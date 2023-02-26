@@ -24,6 +24,7 @@
 		2CF5A00F29ABEFD4004A408F /* en.js in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5A00E29ABEFD4004A408F /* en.js */; };
 		2CF5A01529ABF164004A408F /* locale.js in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5A01429ABF163004A408F /* locale.js */; };
 		2CF5A01929ABF3B5004A408F /* GALocales in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF5A01829ABF3B5004A408F /* GALocales */; };
+		2CF5A01C29AC0556004A408F /* FileOpener in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF5A01B29AC0556004A408F /* FileOpener */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CF5A01C29AC0556004A408F /* FileOpener in Frameworks */,
 				2CF5A01929ABF3B5004A408F /* GALocales in Frameworks */,
 				2C3C8D6229ABD1E900F30D5F /* SalmonUI in Frameworks */,
 				2CF5A00B29ABEDDD004A408F /* BetterNavigation in Frameworks */,
@@ -201,6 +203,7 @@
 				2C3C8D6429ABD2EC00F30D5F /* SettingsUI */,
 				2CF5A00A29ABEDDD004A408F /* BetterNavigation */,
 				2CF5A01829ABF3B5004A408F /* GALocales */,
+				2CF5A01B29AC0556004A408F /* FileOpener */,
 			);
 			productName = GenAppIcon;
 			productReference = 2CD7839629AA490500511AA5 /* GenAppIcon.app */;
@@ -234,6 +237,7 @@
 				2C3C8D6029ABD1E900F30D5F /* XCRemoteSwiftPackageReference "SalmonUI" */,
 				2C3C8D6329ABD2EC00F30D5F /* XCRemoteSwiftPackageReference "SettingsUI" */,
 				2CF5A00929ABEDDD004A408F /* XCRemoteSwiftPackageReference "BetterNavigation" */,
+				2CF5A01A29AC0556004A408F /* XCRemoteSwiftPackageReference "FileOpener" */,
 			);
 			productRefGroup = 2CD7839729AA490500511AA5 /* Products */;
 			projectDirPath = "";
@@ -493,6 +497,14 @@
 				minimumVersion = 0.3.1;
 			};
 		};
+		2CF5A01A29AC0556004A408F /* XCRemoteSwiftPackageReference "FileOpener" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kamaal111/FileOpener.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -514,6 +526,11 @@
 		2CF5A01829ABF3B5004A408F /* GALocales */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GALocales;
+		};
+		2CF5A01B29AC0556004A408F /* FileOpener */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CF5A01A29AC0556004A408F /* XCRemoteSwiftPackageReference "FileOpener" */;
+			productName = FileOpener;
 		};
 /* End XCSwiftPackageProductDependency section */
 

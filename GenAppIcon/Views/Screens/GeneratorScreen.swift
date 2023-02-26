@@ -6,10 +6,20 @@
 //
 
 import SwiftUI
+import FileOpener
 
 struct GeneratorScreen: View {
+    @State private var showFileOpener = false
+
     var body: some View {
-        Text("You are home")
+        VStack {
+            Button(action: { showFileOpener = true }) {
+                Text("Upload image")
+            }
+        }
+        .openFile(isPresented: $showFileOpener, contentTypes: [.image]) { content in
+            print(content)
+        }
     }
 }
 
