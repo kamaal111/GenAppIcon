@@ -1,0 +1,14 @@
+{
+  "name": "genappicon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+      "localize": "node Scripts/generate-locales/locale.js"
+  },
+  "author": "Kamaal",
+  "license": "ISC",
+  "devDependencies": {
+    "@kamaal111/localize": "^0.1.0"
+  }
+}

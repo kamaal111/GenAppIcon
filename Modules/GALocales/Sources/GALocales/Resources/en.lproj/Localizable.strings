@@ -1,0 +1,13 @@
+/*
+  Localizable.strings
+  GALocales
+
+  Created by Kamaal Farah on 26/02/2023.
+  Copyright © 2023 Kamaal. All rights reserved.
+*/
+
+"GENERATOR" = "Generator";
+"SETTINGS" = "Settings";
+"TOGGLE_SIDEBAR" = "Toggle sidebar";
+"SCENES" = "Scenes";
+

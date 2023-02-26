@@ -1,0 +1,534 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2C3C8D5F29ABD15E00F30D5F /* GeneratorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C8D5E29ABD15E00F30D5F /* GeneratorScreen.swift */; };
+		2C3C8D6229ABD1E900F30D5F /* SalmonUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2C3C8D6129ABD1E900F30D5F /* SalmonUI */; };
+		2C3C8D6529ABD2EC00F30D5F /* SettingsUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2C3C8D6429ABD2EC00F30D5F /* SettingsUI */; };
+		2C3C8D6729ABD30000F30D5F /* AppSettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C8D6629ABD30000F30D5F /* AppSettingsScreen.swift */; };
+		2CD7839A29AA490500511AA5 /* GenAppIconApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7839929AA490500511AA5 /* GenAppIconApp.swift */; };
+		2CD7839C29AA490500511AA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7839B29AA490500511AA5 /* ContentView.swift */; };
+		2CD7839E29AA490700511AA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CD7839D29AA490700511AA5 /* Assets.xcassets */; };
+		2CD783A129AA490700511AA5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CD783A029AA490700511AA5 /* Preview Assets.xcassets */; };
+		2CD783A329AA490700511AA5 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD783A229AA490700511AA5 /* Persistence.swift */; };
+		2CD783A629AA490700511AA5 /* GenAppIcon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CD783A429AA490700511AA5 /* GenAppIcon.xcdatamodeld */; };
+		2CD783B129AA4A4400511AA5 /* Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD783B029AA4A4400511AA5 /* Screens.swift */; };
+		2CD783B629AA4CAA00511AA5 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD783B529AA4CAA00511AA5 /* Sidebar.swift */; };
+		2CD783B829AA4CBE00511AA5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD783B729AA4CBE00511AA5 /* MainView.swift */; };
+		2CF5A00B29ABEDDD004A408F /* BetterNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF5A00A29ABEDDD004A408F /* BetterNavigation */; };
+		2CF5A00F29ABEFD4004A408F /* en.js in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5A00E29ABEFD4004A408F /* en.js */; };
+		2CF5A01529ABF164004A408F /* locale.js in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5A01429ABF163004A408F /* locale.js */; };
+		2CF5A01929ABF3B5004A408F /* GALocales in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF5A01829ABF3B5004A408F /* GALocales */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2C3C8D5E29ABD15E00F30D5F /* GeneratorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorScreen.swift; sourceTree = "<group>"; };
+		2C3C8D6629ABD30000F30D5F /* AppSettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsScreen.swift; sourceTree = "<group>"; };
+		2CD7839629AA490500511AA5 /* GenAppIcon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GenAppIcon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CD7839929AA490500511AA5 /* GenAppIconApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenAppIconApp.swift; sourceTree = "<group>"; };
+		2CD7839B29AA490500511AA5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2CD7839D29AA490700511AA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2CD783A029AA490700511AA5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2CD783A229AA490700511AA5 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		2CD783A529AA490700511AA5 /* GenAppIcon.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenAppIcon.xcdatamodel; sourceTree = "<group>"; };
+		2CD783A729AA490700511AA5 /* GenAppIcon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GenAppIcon.entitlements; sourceTree = "<group>"; };
+		2CD783B029AA4A4400511AA5 /* Screens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screens.swift; sourceTree = "<group>"; };
+		2CD783B529AA4CAA00511AA5 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
+		2CD783B729AA4CBE00511AA5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		2CF5A00C29ABEFAA004A408F /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		2CF5A00E29ABEFD4004A408F /* en.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = en.js; sourceTree = "<group>"; };
+		2CF5A01429ABF163004A408F /* locale.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = locale.js; sourceTree = "<group>"; };
+		2CF5A01629ABF296004A408F /* GALocales */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GALocales; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2CD7839329AA490500511AA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CF5A01929ABF3B5004A408F /* GALocales in Frameworks */,
+				2C3C8D6229ABD1E900F30D5F /* SalmonUI in Frameworks */,
+				2CF5A00B29ABEDDD004A408F /* BetterNavigation in Frameworks */,
+				2C3C8D6529ABD2EC00F30D5F /* SettingsUI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2C3C8D5D29ABD14800F30D5F /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				2C3C8D6629ABD30000F30D5F /* AppSettingsScreen.swift */,
+				2C3C8D5E29ABD15E00F30D5F /* GeneratorScreen.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		2CD7838D29AA490500511AA5 = {
+			isa = PBXGroup;
+			children = (
+				2CF5A00C29ABEFAA004A408F /* package.json */,
+				2CD7839829AA490500511AA5 /* GenAppIcon */,
+				2CF5A00D29ABEFB4004A408F /* Locales */,
+				2CF5A01029ABF020004A408F /* Modules */,
+				2CD7839729AA490500511AA5 /* Products */,
+				2CF5A01229ABF143004A408F /* Scripts */,
+				2CF5A01729ABF3B5004A408F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2CD7839729AA490500511AA5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2CD7839629AA490500511AA5 /* GenAppIcon.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2CD7839829AA490500511AA5 /* GenAppIcon */ = {
+			isa = PBXGroup;
+			children = (
+				2CD783A729AA490700511AA5 /* GenAppIcon.entitlements */,
+				2CD7839B29AA490500511AA5 /* ContentView.swift */,
+				2CD7839929AA490500511AA5 /* GenAppIconApp.swift */,
+				2CD783A229AA490700511AA5 /* Persistence.swift */,
+				2CD7839D29AA490700511AA5 /* Assets.xcassets */,
+				2CD783AF29AA4A3000511AA5 /* Enumerations */,
+				2CD783A429AA490700511AA5 /* GenAppIcon.xcdatamodeld */,
+				2CD7839F29AA490700511AA5 /* Preview Content */,
+				2CD783B229AA4C3800511AA5 /* Views */,
+			);
+			path = GenAppIcon;
+			sourceTree = "<group>";
+		};
+		2CD7839F29AA490700511AA5 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				2CD783A029AA490700511AA5 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2CD783AF29AA4A3000511AA5 /* Enumerations */ = {
+			isa = PBXGroup;
+			children = (
+				2CD783B029AA4A4400511AA5 /* Screens.swift */,
+			);
+			path = Enumerations;
+			sourceTree = "<group>";
+		};
+		2CD783B229AA4C3800511AA5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2C3C8D5D29ABD14800F30D5F /* Screens */,
+				2CD783B429AA4C4400511AA5 /* SupportingViews */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2CD783B429AA4C4400511AA5 /* SupportingViews */ = {
+			isa = PBXGroup;
+			children = (
+				2CD783B729AA4CBE00511AA5 /* MainView.swift */,
+				2CD783B529AA4CAA00511AA5 /* Sidebar.swift */,
+			);
+			path = SupportingViews;
+			sourceTree = "<group>";
+		};
+		2CF5A00D29ABEFB4004A408F /* Locales */ = {
+			isa = PBXGroup;
+			children = (
+				2CF5A00E29ABEFD4004A408F /* en.js */,
+			);
+			path = Locales;
+			sourceTree = "<group>";
+		};
+		2CF5A01029ABF020004A408F /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				2CF5A01629ABF296004A408F /* GALocales */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		2CF5A01229ABF143004A408F /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				2CF5A01329ABF151004A408F /* generate-locales */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
+		2CF5A01329ABF151004A408F /* generate-locales */ = {
+			isa = PBXGroup;
+			children = (
+				2CF5A01429ABF163004A408F /* locale.js */,
+			);
+			path = "generate-locales";
+			sourceTree = "<group>";
+		};
+		2CF5A01729ABF3B5004A408F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2CD7839529AA490500511AA5 /* GenAppIcon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2CD783AA29AA490700511AA5 /* Build configuration list for PBXNativeTarget "GenAppIcon" */;
+			buildPhases = (
+				2CD7839229AA490500511AA5 /* Sources */,
+				2CD7839329AA490500511AA5 /* Frameworks */,
+				2CD7839429AA490500511AA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GenAppIcon;
+			packageProductDependencies = (
+				2C3C8D6129ABD1E900F30D5F /* SalmonUI */,
+				2C3C8D6429ABD2EC00F30D5F /* SettingsUI */,
+				2CF5A00A29ABEDDD004A408F /* BetterNavigation */,
+				2CF5A01829ABF3B5004A408F /* GALocales */,
+			);
+			productName = GenAppIcon;
+			productReference = 2CD7839629AA490500511AA5 /* GenAppIcon.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2CD7838E29AA490500511AA5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					2CD7839529AA490500511AA5 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+				};
+			};
+			buildConfigurationList = 2CD7839129AA490500511AA5 /* Build configuration list for PBXProject "GenAppIcon" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2CD7838D29AA490500511AA5;
+			packageReferences = (
+				2C3C8D6029ABD1E900F30D5F /* XCRemoteSwiftPackageReference "SalmonUI" */,
+				2C3C8D6329ABD2EC00F30D5F /* XCRemoteSwiftPackageReference "SettingsUI" */,
+				2CF5A00929ABEDDD004A408F /* XCRemoteSwiftPackageReference "BetterNavigation" */,
+			);
+			productRefGroup = 2CD7839729AA490500511AA5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2CD7839529AA490500511AA5 /* GenAppIcon */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2CD7839429AA490500511AA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CF5A01529ABF164004A408F /* locale.js in Resources */,
+				2CF5A00F29ABEFD4004A408F /* en.js in Resources */,
+				2CD783A129AA490700511AA5 /* Preview Assets.xcassets in Resources */,
+				2CD7839E29AA490700511AA5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2CD7839229AA490500511AA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CD783A329AA490700511AA5 /* Persistence.swift in Sources */,
+				2C3C8D6729ABD30000F30D5F /* AppSettingsScreen.swift in Sources */,
+				2CD783B829AA4CBE00511AA5 /* MainView.swift in Sources */,
+				2CD783B129AA4A4400511AA5 /* Screens.swift in Sources */,
+				2CD7839C29AA490500511AA5 /* ContentView.swift in Sources */,
+				2C3C8D5F29ABD15E00F30D5F /* GeneratorScreen.swift in Sources */,
+				2CD7839A29AA490500511AA5 /* GenAppIconApp.swift in Sources */,
+				2CD783B629AA4CAA00511AA5 /* Sidebar.swift in Sources */,
+				2CD783A629AA490700511AA5 /* GenAppIcon.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2CD783A829AA490700511AA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2CD783A929AA490700511AA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		2CD783AB29AA490700511AA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GenAppIcon/GenAppIcon.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GenAppIcon/Preview Content\"";
+				DEVELOPMENT_TEAM = DXUKH9VF73;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.kamaal.GenAppIcon;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2CD783AC29AA490700511AA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GenAppIcon/GenAppIcon.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GenAppIcon/Preview Content\"";
+				DEVELOPMENT_TEAM = DXUKH9VF73;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.kamaal.GenAppIcon;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2CD7839129AA490500511AA5 /* Build configuration list for PBXProject "GenAppIcon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CD783A829AA490700511AA5 /* Debug */,
+				2CD783A929AA490700511AA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2CD783AA29AA490700511AA5 /* Build configuration list for PBXNativeTarget "GenAppIcon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CD783AB29AA490700511AA5 /* Debug */,
+				2CD783AC29AA490700511AA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2C3C8D6029ABD1E900F30D5F /* XCRemoteSwiftPackageReference "SalmonUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kamaalio/SalmonUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
+		2C3C8D6329ABD2EC00F30D5F /* XCRemoteSwiftPackageReference "SettingsUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kamaalio/SettingsUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
+		2CF5A00929ABEDDD004A408F /* XCRemoteSwiftPackageReference "BetterNavigation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kamaal111/BetterNavigation.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.3.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2C3C8D6129ABD1E900F30D5F /* SalmonUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C3C8D6029ABD1E900F30D5F /* XCRemoteSwiftPackageReference "SalmonUI" */;
+			productName = SalmonUI;
+		};
+		2C3C8D6429ABD2EC00F30D5F /* SettingsUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C3C8D6329ABD2EC00F30D5F /* XCRemoteSwiftPackageReference "SettingsUI" */;
+			productName = SettingsUI;
+		};
+		2CF5A00A29ABEDDD004A408F /* BetterNavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CF5A00929ABEDDD004A408F /* XCRemoteSwiftPackageReference "BetterNavigation" */;
+			productName = BetterNavigation;
+		};
+		2CF5A01829ABF3B5004A408F /* GALocales */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GALocales;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		2CD783A429AA490700511AA5 /* GenAppIcon.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2CD783A529AA490700511AA5 /* GenAppIcon.xcdatamodel */,
+			);
+			currentVersion = 2CD783A529AA490700511AA5 /* GenAppIcon.xcdatamodel */;
+			path = GenAppIcon.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 2CD7838E29AA490500511AA5 /* Project object */;
+}
