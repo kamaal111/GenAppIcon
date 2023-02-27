@@ -11,5 +11,11 @@ extension GALocales {
         case SETTINGS
         case TOGGLE_SIDEBAR
         case SCENES
+        case UPLOAD_IMAGE
+        case IMAGE_NOT_FOUND
+        case UNSUPPORTED_IMAGE
+        case UNSUPPORTED_IMAGE_DESCRIPTION
+        case IMAGE_NOT_ALLOWED
+        case IMAGE_NOT_ALLOWED_DESCRIPTION
     }
 }

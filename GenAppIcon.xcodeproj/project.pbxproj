@@ -25,6 +25,9 @@
 		2CF5A01529ABF164004A408F /* locale.js in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5A01429ABF163004A408F /* locale.js */; };
 		2CF5A01929ABF3B5004A408F /* GALocales in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF5A01829ABF3B5004A408F /* GALocales */; };
 		2CF5A01C29AC0556004A408F /* FileOpener in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF5A01B29AC0556004A408F /* FileOpener */; };
+		2CFA44D129AD485400299EAE /* PopperUp in Frameworks */ = {isa = PBXBuildFile; productRef = 2CFA44D029AD485400299EAE /* PopperUp */; };
+		2CFA44D429AD4B3900299EAE /* Logster in Frameworks */ = {isa = PBXBuildFile; productRef = 2CFA44D329AD4B3900299EAE /* Logster */; };
+		2CFA44D729AD510300299EAE /* ShrimpExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 2CFA44D629AD510300299EAE /* ShrimpExtensions */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +56,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CF5A01C29AC0556004A408F /* FileOpener in Frameworks */,
+				2CFA44D129AD485400299EAE /* PopperUp in Frameworks */,
 				2CF5A01929ABF3B5004A408F /* GALocales in Frameworks */,
+				2CFA44D729AD510300299EAE /* ShrimpExtensions in Frameworks */,
+				2CFA44D429AD4B3900299EAE /* Logster in Frameworks */,
 				2C3C8D6229ABD1E900F30D5F /* SalmonUI in Frameworks */,
 				2CF5A00B29ABEDDD004A408F /* BetterNavigation in Frameworks */,
 				2C3C8D6529ABD2EC00F30D5F /* SettingsUI in Frameworks */,
@@ -204,6 +210,9 @@
 				2CF5A00A29ABEDDD004A408F /* BetterNavigation */,
 				2CF5A01829ABF3B5004A408F /* GALocales */,
 				2CF5A01B29AC0556004A408F /* FileOpener */,
+				2CFA44D029AD485400299EAE /* PopperUp */,
+				2CFA44D329AD4B3900299EAE /* Logster */,
+				2CFA44D629AD510300299EAE /* ShrimpExtensions */,
 			);
 			productName = GenAppIcon;
 			productReference = 2CD7839629AA490500511AA5 /* GenAppIcon.app */;
@@ -238,6 +247,9 @@
 				2C3C8D6329ABD2EC00F30D5F /* XCRemoteSwiftPackageReference "SettingsUI" */,
 				2CF5A00929ABEDDD004A408F /* XCRemoteSwiftPackageReference "BetterNavigation" */,
 				2CF5A01A29AC0556004A408F /* XCRemoteSwiftPackageReference "FileOpener" */,
+				2CFA44CF29AD485400299EAE /* XCRemoteSwiftPackageReference "PopperUp" */,
+				2CFA44D229AD4B3900299EAE /* XCRemoteSwiftPackageReference "Logster" */,
+				2CFA44D529AD510300299EAE /* XCRemoteSwiftPackageReference "ShrimpExtensions" */,
 			);
 			productRefGroup = 2CD7839729AA490500511AA5 /* Products */;
 			projectDirPath = "";
@@ -502,7 +514,31 @@
 			repositoryURL = "https://github.com/kamaal111/FileOpener.git";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.1.0;
+				minimumVersion = 0.2.0;
+			};
+		};
+		2CFA44CF29AD485400299EAE /* XCRemoteSwiftPackageReference "PopperUp" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kamaalio/PopperUp.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.4.1;
+			};
+		};
+		2CFA44D229AD4B3900299EAE /* XCRemoteSwiftPackageReference "Logster" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kamaalio/Logster.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+		2CFA44D529AD510300299EAE /* XCRemoteSwiftPackageReference "ShrimpExtensions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kamaalio/ShrimpExtensions.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -531,6 +567,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2CF5A01A29AC0556004A408F /* XCRemoteSwiftPackageReference "FileOpener" */;
 			productName = FileOpener;
+		};
+		2CFA44D029AD485400299EAE /* PopperUp */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CFA44CF29AD485400299EAE /* XCRemoteSwiftPackageReference "PopperUp" */;
+			productName = PopperUp;
+		};
+		2CFA44D329AD4B3900299EAE /* Logster */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CFA44D229AD4B3900299EAE /* XCRemoteSwiftPackageReference "Logster" */;
+			productName = Logster;
+		};
+		2CFA44D629AD510300299EAE /* ShrimpExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CFA44D529AD510300299EAE /* XCRemoteSwiftPackageReference "ShrimpExtensions" */;
+			productName = ShrimpExtensions;
 		};
 /* End XCSwiftPackageProductDependency section */
 

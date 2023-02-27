@@ -6,14 +6,17 @@
 //
 
 import SwiftUI
+import PopperUp
 import BetterNavigation
 
 struct ContentView: View {
+    @StateObject private var popperUpManager = PopperUpManager()
+
     var body: some View {
         NavigationStackView(
             stack: [] as [Screens],
-            root: { screen in MainView(screen: screen) },
-            subView: { screen in MainView(screen: screen) },
+            root: { screen in MainView(screen: screen).withPopperUp(popperUpManager) },
+            subView: { screen in MainView(screen: screen).withPopperUp(popperUpManager) },
             sidebar: { Sidebar() })
     }
 }

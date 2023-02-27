@@ -17,6 +17,7 @@ struct Sidebar: View {
                     ForEach(screens) { screen in
                         StackNavigationChangeStackButton(destination: screen) {
                             Label(screen.title, systemImage: screen.imageSystemName)
+                                .bold()
                                 .foregroundColor(.accentColor)
                         }
                         .buttonStyle(.plain)
