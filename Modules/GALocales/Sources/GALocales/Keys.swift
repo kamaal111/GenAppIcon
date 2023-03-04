@@ -17,5 +17,8 @@ extension GALocales {
         case UNSUPPORTED_IMAGE_DESCRIPTION
         case IMAGE_NOT_ALLOWED
         case IMAGE_NOT_ALLOWED_DESCRIPTION
+        case GENERATE_APP_ICONS
+        case FAILED_TO_GENERATE_APP_ICON
+        case FAILED_TO_SAVE_APP_ICON
     }
 }

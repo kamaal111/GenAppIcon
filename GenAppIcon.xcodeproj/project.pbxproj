@@ -10,6 +10,9 @@
 		2C1B21A929B3AAB4005EB535 /* app-icon-generator in Resources */ = {isa = PBXBuildFile; fileRef = 2C1B219E29B3AA8F005EB535 /* app-icon-generator */; };
 		2C1B21AC29B3AC68005EB535 /* QuickStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1B21AB29B3AC68005EB535 /* QuickStorage.swift */; };
 		2C1B21AE29B3AF8D005EB535 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1B21AD29B3AF8D005EB535 /* Constants.swift */; };
+		2C1B21B029B3B243005EB535 /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1B21AF29B3B243005EB535 /* Shell.swift */; };
+		2C1B21B329B3B2CA005EB535 /* FileManager+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1B21B229B3B2CA005EB535 /* FileManager+extensions.swift */; };
+		2C1B21B529B3B96F005EB535 /* SavePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1B21B429B3B96F005EB535 /* SavePanel.swift */; };
 		2C3C8D5F29ABD15E00F30D5F /* GeneratorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C8D5E29ABD15E00F30D5F /* GeneratorScreen.swift */; };
 		2C3C8D6229ABD1E900F30D5F /* SalmonUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2C3C8D6129ABD1E900F30D5F /* SalmonUI */; };
 		2C3C8D6529ABD2EC00F30D5F /* SettingsUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2C3C8D6429ABD2EC00F30D5F /* SettingsUI */; };
@@ -47,6 +50,9 @@
 		2C1B21A829B3AA8F005EB535 /* main.go */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.go; sourceTree = "<group>"; };
 		2C1B21AB29B3AC68005EB535 /* QuickStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickStorage.swift; sourceTree = "<group>"; };
 		2C1B21AD29B3AF8D005EB535 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2C1B21AF29B3B243005EB535 /* Shell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shell.swift; sourceTree = "<group>"; };
+		2C1B21B229B3B2CA005EB535 /* FileManager+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+extensions.swift"; sourceTree = "<group>"; };
+		2C1B21B429B3B96F005EB535 /* SavePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePanel.swift; sourceTree = "<group>"; };
 		2C3C8D5E29ABD15E00F30D5F /* GeneratorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorScreen.swift; sourceTree = "<group>"; };
 		2C3C8D6629ABD30000F30D5F /* AppSettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsScreen.swift; sourceTree = "<group>"; };
 		2CD7839629AA490500511AA5 /* GenAppIcon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GenAppIcon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,8 +145,18 @@
 			isa = PBXGroup;
 			children = (
 				2C1B21AB29B3AC68005EB535 /* QuickStorage.swift */,
+				2C1B21B429B3B96F005EB535 /* SavePanel.swift */,
+				2C1B21AF29B3B243005EB535 /* Shell.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		2C1B21B129B3B2BD005EB535 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2C1B21B229B3B2CA005EB535 /* FileManager+extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		2C3C8D5D29ABD14800F30D5F /* Screens */ = {
@@ -183,6 +199,7 @@
 				2CD783A229AA490700511AA5 /* Persistence.swift */,
 				2CD7839D29AA490700511AA5 /* Assets.xcassets */,
 				2CD783AF29AA4A3000511AA5 /* Enumerations */,
+				2C1B21B129B3B2BD005EB535 /* Extensions */,
 				2CD783A429AA490700511AA5 /* GenAppIcon.xcdatamodeld */,
 				2CD7839F29AA490700511AA5 /* Preview Content */,
 				2C1B21AA29B3AC51005EB535 /* Utilities */,
@@ -363,7 +380,10 @@
 				2CD783B829AA4CBE00511AA5 /* MainView.swift in Sources */,
 				2CD783B129AA4A4400511AA5 /* Screens.swift in Sources */,
 				2CD7839C29AA490500511AA5 /* ContentView.swift in Sources */,
+				2C1B21B029B3B243005EB535 /* Shell.swift in Sources */,
 				2C1B21AC29B3AC68005EB535 /* QuickStorage.swift in Sources */,
+				2C1B21B329B3B2CA005EB535 /* FileManager+extensions.swift in Sources */,
+				2C1B21B529B3B96F005EB535 /* SavePanel.swift in Sources */,
 				2C3C8D5F29ABD15E00F30D5F /* GeneratorScreen.swift in Sources */,
 				2CD7839A29AA490500511AA5 /* GenAppIconApp.swift in Sources */,
 				2CD783B629AA4CAA00511AA5 /* Sidebar.swift in Sources */,
