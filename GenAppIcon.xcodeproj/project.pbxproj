@@ -597,7 +597,7 @@
 			repositoryURL = "https://github.com/kamaal111/FileOpener.git";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.2.0;
+				minimumVersion = 0.2.1;
 			};
 		};
 		2CFA44CF29AD485400299EAE /* XCRemoteSwiftPackageReference "PopperUp" */ = {

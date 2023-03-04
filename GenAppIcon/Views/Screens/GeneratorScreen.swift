@@ -184,7 +184,7 @@ extension GeneratorScreen {
                     content = success
                 }
 
-                guard let content else { return .failure(.fileCouldNotBeRead) }
+                guard let content else { return .success(()) }
 
                 logger.info("Opened file successfully")
                 await setImageData(content)
