@@ -15,4 +15,5 @@ module.exports = {
     FAILED_TO_GENERATE_APP_ICON: "Failed to generate app icon",
     FAILED_TO_SAVE_APP_ICON: "Failed to save app icon",
     SUCCESSFULL_APP_ICON_GENERATED: "Successfully generated app icons",
+    FILE_FORMAT_NOT_SUPPORTED: "This file format is not suported",
 }

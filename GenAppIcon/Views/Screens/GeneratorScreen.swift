@@ -44,6 +44,21 @@ struct GeneratorScreen: View {
             .disabled(viewModel.generateAppIconIsDisabled)
         }
         .openFile(isPresented: $viewModel.showFileOpener, contentTypes: [.image], onFileOpen: onFileOpened)
+        .ktakeSizeEagerly()
+        .dropDestination(action: handleDropDestination)
+    }
+
+    private func handleDropDestination(_ items: [Data], _ location: CGPoint) -> Bool {
+        let result = viewModel.handleDroppedFiles(items)
+        switch result {
+        case .failure(let failure):
+            popperUpManager.showPopup(style: failure.popupStyle, timeout: 3)
+            return false
+        case .success:
+            break
+        }
+
+        return true
     }
 
     private func onFileOpened(_ result: Result<Data?, FileOpenerErrors>) {
@@ -100,6 +115,7 @@ extension GeneratorScreen {
             case fileNotFound
             case fileCouldNotBeRead
             case notAllowedToReadFile
+            case unsupporedFileFormat
 
             var popupStyle: PopperUpStyles {
                 switch self {
@@ -122,6 +138,11 @@ extension GeneratorScreen {
                         title: GALocales.getText(.IMAGE_NOT_ALLOWED),
                         type: .error,
                         description: GALocales.getText(.IMAGE_NOT_ALLOWED_DESCRIPTION))
+                case .unsupporedFileFormat:
+                    return .bottom(
+                        title: GALocales.getText(.FILE_FORMAT_NOT_SUPPORTED),
+                        type: .warning,
+                        description: .none)
                 }
             }
         }
@@ -134,6 +155,21 @@ extension GeneratorScreen {
 
         var generateAppIconIsDisabled: Bool {
             image == nil || loading
+        }
+
+        func handleDroppedFiles(_ filesContent: [Data]) -> Result<Void, Errors> {
+            let supportedImage = filesContent
+                .first(where: {
+                    NSBitmapImageRep(data: $0)?.representation(using: .png, properties: [:]) != nil
+                })
+            guard let supportedImage else {
+                logger.warning("Unsupported file provided")
+                return .failure(.unsupporedFileFormat)
+            }
+
+            logger.info("Dropped file successfully")
+            Task { await setImageData(supportedImage) }
+            return .success(())
         }
 
         func handleFileOpened(_ result: Result<Data?, FileOpenerErrors>) async -> Result<Void, Errors> {
@@ -150,6 +186,7 @@ extension GeneratorScreen {
 
                 guard let content else { return .failure(.fileCouldNotBeRead) }
 
+                logger.info("Opened file successfully")
                 await setImageData(content)
                 return .success(())
             })
