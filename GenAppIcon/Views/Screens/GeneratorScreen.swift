@@ -11,6 +11,7 @@ import SalmonUI
 import PopperUp
 import GALocales
 import FileOpener
+import AppIconGenerator
 import ShrimpExtensions
 
 private let logger = Logster(from: GeneratorScreen.self)
@@ -128,62 +129,8 @@ extension GeneratorScreen {
         }
 
         func generateAppIcons() async -> Result<Void, Errors> {
-            guard let bitmapImage = NSBitmapImageRep(data: imageData!),
-                  let pngData = bitmapImage.representation(using: .png, properties: [:]) else {
-                logger.error("Failed to get PNG representation from image")
-                assertionFailure("Failed to get PNG representation from image")
-                return .failure(.fileCouldNotBeRead)
-            }
-
-            let fileManager = FileManager.default
-            let temporaryDirectory = fileManager.temporaryDirectory
-            let output: String
-            do {
-                output = try Shell.runAppIconGenerator(input: pngData, output: temporaryDirectory)
-            } catch {
-                logger.error(label: "Failed to generate app icon", error: error)
-                assertionFailure("Failed to generate app icon")
-                return .failure(.generateAppIconFailed(context: error))
-            }
-            guard let outputMessage = output.splitLines.last, outputMessage.hasPrefix("done creating icons") else {
-                logger.error("Failure message in output; \(output)")
-                assertionFailure("Failure message in output; \(output)")
-                return .failure(.generateAppIconFailed(context: .none))
-            }
-            logger.info("Output of generate app icon script; \(outputMessage)")
-
-            let iconSetName = "AppIcon.appiconset"
-            let iconSetURL = try! fileManager.findDirectoryOrFile(
-                inDirectory: temporaryDirectory,
-                searchPath: iconSetName
-            )!
-            defer { try? fileManager.removeItem(at: iconSetURL) }
-
-            let (savePanelResult, panel) = await SavePanel.savePanel(filename: iconSetName)
-            guard savePanelResult == .OK else {
-                logger.warning("Failed to get result from save panel with status; \(savePanelResult)")
-                return .success(())
-            }
-
-            guard let saveURL = await panel.url else {
-                logger.error("Failed to get save URL")
-                assertionFailure("Failed to get save URL")
-                return .failure(.failedToSaveAppIcon)
-            }
-
-            if fileManager.fileExists(atPath: saveURL.path) {
-                try? fileManager.removeItem(at: saveURL)
-            }
-
-            do {
-                try fileManager.moveItem(at: iconSetURL, to: saveURL)
-            } catch {
-                logger.error(label: "Failed to save icon at the given location", error: error)
-                assertionFailure("Failed to save icon at the given location")
-                return .failure(.failedToSaveAppIcon)
-            }
-
-            return .success(())
+            await AppIconGenerator.generate(imageData!)
+                .mapError(handleAppIconGeneratorError)
         }
 
         @MainActor
@@ -195,6 +142,28 @@ extension GeneratorScreen {
         private func setImageData(_ imageData: Data) {
             self.imageData = imageData
             quickStorage.lastUploadedLogo = imageData
+        }
+
+        private func handleAppIconGeneratorError(_ error: AppIconGenerator.Errors) -> Errors {
+            switch error {
+            case .conversionFailure:
+                logger.error("Conversion failure while generating app icon")
+                assertionFailure("Conversion failure while generating app icon")
+                return .generateAppIconFailed(context: error)
+            case .generateAppIconFailure(let context):
+                let logMessage = "Failed to generate app icon"
+                if let context {
+                    logger.error(label: logMessage, error: context)
+                } else {
+                    logger.error(logMessage)
+                }
+                assertionFailure(logMessage)
+                return .generateAppIconFailed(context: context)
+            case .failedToSaveAppIcon:
+                logger.error("Failed to save app icon")
+                assertionFailure("Failed to save app icon")
+                return .failedToSaveAppIcon
+            }
         }
 
         private func handleFileOpenFailure(_ failure: FileOpenerErrors) -> Errors {
