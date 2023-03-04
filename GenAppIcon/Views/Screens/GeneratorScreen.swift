@@ -22,12 +22,7 @@ struct GeneratorScreen: View {
     @StateObject private var viewModel = ViewModel()
 
     var body: some View {
-        VStack {
-            if let image = viewModel.image {
-                Image(nsImage: image)
-                    .size(.squared(200))
-                    .cornerRadius(16)
-            }
+        VStack(alignment: .leading) {
             Button(action: { viewModel.openFileOpener() }) {
                 Text(GALocales.getText(.UPLOAD_IMAGE))
                     .bold()
@@ -42,9 +37,15 @@ struct GeneratorScreen: View {
             }
             .buttonStyle(.plain)
             .disabled(viewModel.generateAppIconIsDisabled)
+            if let image = viewModel.image {
+                Image(nsImage: image)
+                    .size(.squared(200))
+                    .cornerRadius(viewModel.logoCornerRadius)
+            }
         }
         .openFile(isPresented: $viewModel.showFileOpener, contentTypes: [.image], onFileOpen: onFileOpened)
-        .ktakeSizeEagerly()
+        .padding(16)
+        .ktakeSizeEagerly(alignment: .topLeading)
         .dropDestination(action: handleDropDestination)
     }
 
@@ -100,6 +101,7 @@ extension GeneratorScreen {
         @Published var showFileOpener = false
         @Published private var imageData: Data?
         @Published private(set) var loading = false
+        @Published var logoCornerRadius: CGFloat = 0
 
         private let quickStorage = QuickStorage()
 
