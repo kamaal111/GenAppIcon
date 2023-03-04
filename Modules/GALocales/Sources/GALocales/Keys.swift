@@ -20,5 +20,6 @@ extension GALocales {
         case GENERATE_APP_ICONS
         case FAILED_TO_GENERATE_APP_ICON
         case FAILED_TO_SAVE_APP_ICON
+        case SUCCESSFULL_APP_ICON_GENERATED
     }
 }

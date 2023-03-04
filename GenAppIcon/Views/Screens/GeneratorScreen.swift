@@ -34,7 +34,8 @@ struct GeneratorScreen: View {
                     .foregroundColor(.accentColor)
             }
             .buttonStyle(.plain)
-            Button(action: { Task { await viewModel.generateAppIcons() } }) {
+            .disabled(viewModel.loading)
+            Button(action: onGenerateAppIconsClick) {
                 Text(GALocales.getText(.GENERATE_APP_ICONS))
                     .bold()
                     .foregroundColor(.accentColor)
@@ -56,12 +57,34 @@ struct GeneratorScreen: View {
             }
         }
     }
+
+    private func onGenerateAppIconsClick() {
+        Task {
+            let result = await viewModel.generateAppIcons()
+            switch result {
+            case .failure(let failure):
+                popperUpManager.showPopup(style: failure.popupStyle, timeout: 3)
+                return
+            case .success:
+                break
+            }
+
+            logger.info("Successfully generated app icons")
+            popperUpManager.showPopup(
+                style: .bottom(
+                    title: GALocales.getText(.SUCCESSFULL_APP_ICON_GENERATED),
+                    type: .success,
+                    description: .none),
+                timeout: 3)
+        }
+    }
 }
 
 extension GeneratorScreen {
     final class ViewModel: ObservableObject {
         @Published var showFileOpener = false
         @Published private var imageData: Data?
+        @Published private(set) var loading = false
 
         private let quickStorage = QuickStorage()
 
@@ -110,27 +133,33 @@ extension GeneratorScreen {
         }
 
         var generateAppIconIsDisabled: Bool {
-            image == nil
+            image == nil || loading
         }
 
         func handleFileOpened(_ result: Result<Data?, FileOpenerErrors>) async -> Result<Void, Errors> {
-            let content: Data?
-            switch result {
-            case .failure(let failure):
-                return .failure(handleFileOpenFailure(failure))
-            case .success(let success):
-                content = success
-            }
+            await withLoading(function: {
+                let result = result
+                    .mapError(handleFileOpenFailure)
+                let content: Data?
+                switch result {
+                case .failure(let failure):
+                    return .failure(failure)
+                case .success(let success):
+                    content = success
+                }
 
-            guard let content else { return .failure(.fileCouldNotBeRead) }
+                guard let content else { return .failure(.fileCouldNotBeRead) }
 
-            await setImageData(content)
-            return .success(())
+                await setImageData(content)
+                return .success(())
+            })
         }
 
         func generateAppIcons() async -> Result<Void, Errors> {
-            await AppIconGenerator.generate(imageData!)
-                .mapError(handleAppIconGeneratorError)
+            await withLoading(function: {
+                await AppIconGenerator.generate(imageData!)
+            })
+            .mapError(handleAppIconGeneratorError)
         }
 
         @MainActor
@@ -142,6 +171,18 @@ extension GeneratorScreen {
         private func setImageData(_ imageData: Data) {
             self.imageData = imageData
             quickStorage.lastUploadedLogo = imageData
+        }
+
+        @MainActor
+        private func setLoading(_ state: Bool) {
+            self.loading = state
+        }
+
+        private func withLoading<T>(function: () async -> T) async -> T {
+            await setLoading(true)
+            let result = await function()
+            await setLoading(false)
+            return result
         }
 
         private func handleAppIconGeneratorError(_ error: AppIconGenerator.Errors) -> Errors {

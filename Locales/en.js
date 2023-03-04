@@ -14,4 +14,5 @@ module.exports = {
     GENERATE_APP_ICONS: "Generate app icons",
     FAILED_TO_GENERATE_APP_ICON: "Failed to generate app icon",
     FAILED_TO_SAVE_APP_ICON: "Failed to save app icon",
+    SUCCESSFULL_APP_ICON_GENERATED: "Successfully generated app icons",
 }
