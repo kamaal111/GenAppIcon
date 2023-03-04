@@ -15,9 +15,10 @@ struct ContentView: View {
     var body: some View {
         NavigationStackView(
             stack: [] as [Screens],
-            root: { screen in MainView(screen: screen).withPopperUp(popperUpManager) },
-            subView: { screen in MainView(screen: screen).withPopperUp(popperUpManager) },
+            root: { screen in MainView(screen: screen) },
+            subView: { screen in MainView(screen: screen) },
             sidebar: { Sidebar() })
+        .withPopperUp(popperUpManager)
     }
 }
 

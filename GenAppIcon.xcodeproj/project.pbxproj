@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C1B21A929B3AAB4005EB535 /* app-icon-generator in Resources */ = {isa = PBXBuildFile; fileRef = 2C1B219E29B3AA8F005EB535 /* app-icon-generator */; };
+		2C1B21AC29B3AC68005EB535 /* QuickStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1B21AB29B3AC68005EB535 /* QuickStorage.swift */; };
+		2C1B21AE29B3AF8D005EB535 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1B21AD29B3AF8D005EB535 /* Constants.swift */; };
 		2C3C8D5F29ABD15E00F30D5F /* GeneratorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C8D5E29ABD15E00F30D5F /* GeneratorScreen.swift */; };
 		2C3C8D6229ABD1E900F30D5F /* SalmonUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2C3C8D6129ABD1E900F30D5F /* SalmonUI */; };
 		2C3C8D6529ABD2EC00F30D5F /* SettingsUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2C3C8D6429ABD2EC00F30D5F /* SettingsUI */; };
@@ -31,6 +34,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C1B219B29B3AA8F005EB535 /* pre-commit */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "pre-commit"; sourceTree = "<group>"; };
+		2C1B219C29B3AA8F005EB535 /* go.mod */ = {isa = PBXFileReference; lastKnownFileType = text; path = go.mod; sourceTree = "<group>"; };
+		2C1B219E29B3AA8F005EB535 /* app-icon-generator */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "app-icon-generator"; sourceTree = "<group>"; };
+		2C1B21A029B3AA8F005EB535 /* Contents.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
+		2C1B21A129B3AA8F005EB535 /* go.sum */ = {isa = PBXFileReference; lastKnownFileType = text; path = go.sum; sourceTree = "<group>"; };
+		2C1B21A229B3AA8F005EB535 /* yarn.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = yarn.lock; sourceTree = "<group>"; };
+		2C1B21A329B3AA8F005EB535 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		2C1B21A429B3AA8F005EB535 /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		2C1B21A629B3AA8F005EB535 /* saitama.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = saitama.jpeg; sourceTree = "<group>"; };
+		2C1B21A729B3AA8F005EB535 /* yami.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yami.jpg; sourceTree = "<group>"; };
+		2C1B21A829B3AA8F005EB535 /* main.go */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.go; sourceTree = "<group>"; };
+		2C1B21AB29B3AC68005EB535 /* QuickStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickStorage.swift; sourceTree = "<group>"; };
+		2C1B21AD29B3AF8D005EB535 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2C3C8D5E29ABD15E00F30D5F /* GeneratorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorScreen.swift; sourceTree = "<group>"; };
 		2C3C8D6629ABD30000F30D5F /* AppSettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsScreen.swift; sourceTree = "<group>"; };
 		2CD7839629AA490500511AA5 /* GenAppIcon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GenAppIcon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +85,64 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C1B219929B3AA8F005EB535 /* app-icon-generator */ = {
+			isa = PBXGroup;
+			children = (
+				2C1B21A329B3AA8F005EB535 /* .gitignore */,
+				2C1B21A829B3AA8F005EB535 /* main.go */,
+				2C1B21A429B3AA8F005EB535 /* package.json */,
+				2C1B21A229B3AA8F005EB535 /* yarn.lock */,
+				2C1B219C29B3AA8F005EB535 /* go.mod */,
+				2C1B21A129B3AA8F005EB535 /* go.sum */,
+				2C1B219A29B3AA8F005EB535 /* .husky */,
+				2C1B219D29B3AA8F005EB535 /* bin */,
+				2C1B219F29B3AA8F005EB535 /* resources */,
+				2C1B21A529B3AA8F005EB535 /* test-files */,
+			);
+			path = "app-icon-generator";
+			sourceTree = "<group>";
+		};
+		2C1B219A29B3AA8F005EB535 /* .husky */ = {
+			isa = PBXGroup;
+			children = (
+				2C1B219B29B3AA8F005EB535 /* pre-commit */,
+			);
+			path = .husky;
+			sourceTree = "<group>";
+		};
+		2C1B219D29B3AA8F005EB535 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				2C1B219E29B3AA8F005EB535 /* app-icon-generator */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		2C1B219F29B3AA8F005EB535 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				2C1B21A029B3AA8F005EB535 /* Contents.json */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		2C1B21A529B3AA8F005EB535 /* test-files */ = {
+			isa = PBXGroup;
+			children = (
+				2C1B21A629B3AA8F005EB535 /* saitama.jpeg */,
+				2C1B21A729B3AA8F005EB535 /* yami.jpg */,
+			);
+			path = "test-files";
+			sourceTree = "<group>";
+		};
+		2C1B21AA29B3AC51005EB535 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				2C1B21AB29B3AC68005EB535 /* QuickStorage.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		2C3C8D5D29ABD14800F30D5F /* Screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				2CD783A729AA490700511AA5 /* GenAppIcon.entitlements */,
+				2C1B21AD29B3AF8D005EB535 /* Constants.swift */,
 				2CD7839B29AA490500511AA5 /* ContentView.swift */,
 				2CD7839929AA490500511AA5 /* GenAppIconApp.swift */,
 				2CD783A229AA490700511AA5 /* Persistence.swift */,
@@ -110,6 +185,7 @@
 				2CD783AF29AA4A3000511AA5 /* Enumerations */,
 				2CD783A429AA490700511AA5 /* GenAppIcon.xcdatamodeld */,
 				2CD7839F29AA490700511AA5 /* Preview Content */,
+				2C1B21AA29B3AC51005EB535 /* Utilities */,
 				2CD783B229AA4C3800511AA5 /* Views */,
 			);
 			path = GenAppIcon;
@@ -168,6 +244,7 @@
 		2CF5A01229ABF143004A408F /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				2C1B219929B3AA8F005EB535 /* app-icon-generator */,
 				2CF5A01329ABF151004A408F /* generate-locales */,
 			);
 			path = Scripts;
@@ -265,6 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C1B21A929B3AAB4005EB535 /* app-icon-generator in Resources */,
 				2CF5A01529ABF164004A408F /* locale.js in Resources */,
 				2CF5A00F29ABEFD4004A408F /* en.js in Resources */,
 				2CD783A129AA490700511AA5 /* Preview Assets.xcassets in Resources */,
@@ -280,10 +358,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CD783A329AA490700511AA5 /* Persistence.swift in Sources */,
+				2C1B21AE29B3AF8D005EB535 /* Constants.swift in Sources */,
 				2C3C8D6729ABD30000F30D5F /* AppSettingsScreen.swift in Sources */,
 				2CD783B829AA4CBE00511AA5 /* MainView.swift in Sources */,
 				2CD783B129AA4A4400511AA5 /* Screens.swift in Sources */,
 				2CD7839C29AA490500511AA5 /* ContentView.swift in Sources */,
+				2C1B21AC29B3AC68005EB535 /* QuickStorage.swift in Sources */,
 				2C3C8D5F29ABD15E00F30D5F /* GeneratorScreen.swift in Sources */,
 				2CD7839A29AA490500511AA5 /* GenAppIconApp.swift in Sources */,
 				2CD783B629AA4CAA00511AA5 /* Sidebar.swift in Sources */,

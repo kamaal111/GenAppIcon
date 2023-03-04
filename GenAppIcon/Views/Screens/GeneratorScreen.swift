@@ -82,10 +82,19 @@ extension GeneratorScreen {
         @Published var showFileOpener = false
         @Published private(set) var image: NSImage?
 
+        private let quickStorage = QuickStorage()
+
+        init() {
+            if let imageData = quickStorage.lastUploadedLogo, let image = NSImage(data: imageData) {
+                Task { await setImage(image) }
+            }
+        }
+
         func handleContentFromOpenedFile(_ content: Data?) async {
             guard let content, let image = NSImage(data: content) else { return }
 
             await setImage(image)
+            quickStorage.lastUploadedLogo = content
         }
 
         @MainActor
