@@ -8,6 +8,7 @@
 import SwiftUI
 import Logster
 import Backend
+import Combine
 import SalmonUI
 import PopperUp
 import GALocales
@@ -23,30 +24,49 @@ struct GeneratorScreen: View {
     @StateObject private var viewModel = ViewModel()
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Button(action: { viewModel.openFileOpener() }) {
-                Text(GALocales.getText(.UPLOAD_IMAGE))
-                    .bold()
-                    .foregroundColor(.accentColor)
+        ScrollView {
+            VStack(alignment: .center, spacing: 0) {
+                WideButton(action: { viewModel.openFileOpener() }) {
+                    VStack {
+                        Text(GALocales.getText(.UPLOAD_IMAGE))
+                            .bold()
+                            .foregroundColor(.accentColor)
+                        Text(GALocales.getText(.DRAG_AND_DROP_HINT))
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.vertical, 4)
+                    .ktakeWidthEagerly()
+                    .background(Color(nsColor: .separatorColor))
+                    .cornerRadius(4)
+                }
+                .disabled(viewModel.loading)
+                WideButton(action: onGenerateAppIconsClick) {
+                    Text(GALocales.getText(.GENERATE_APP_ICONS))
+                        .bold()
+                        .foregroundColor(.accentColor)
+                        .padding(.vertical, 8)
+                        .ktakeWidthEagerly()
+                        .background(Color(nsColor: .separatorColor))
+                        .cornerRadius(4)
+                }
+                .disabled(viewModel.generateAppIconIsDisabled)
+                .padding(.vertical, 8)
+                if let image = viewModel.image {
+                    Image(nsImage: image)
+                        .size(.squared(200))
+                        .cornerRadius(viewModel.logoCornerRadius)
+                        .padding(.vertical, 8)
+                }
+                Stepper(
+                    GALocales.getText(.CORNER_RADIUS_STEPPER_LABEL, with: [String(Int(viewModel.logoCornerRadius))]),
+                    value: $viewModel.logoCornerRadius)
+                .padding(.vertical, 8)
             }
-            .buttonStyle(.plain)
-            .disabled(viewModel.loading)
-            Button(action: onGenerateAppIconsClick) {
-                Text(GALocales.getText(.GENERATE_APP_ICONS))
-                    .bold()
-                    .foregroundColor(.accentColor)
-            }
-            .buttonStyle(.plain)
-            .disabled(viewModel.generateAppIconIsDisabled)
-            if let image = viewModel.image {
-                Image(nsImage: image)
-                    .size(.squared(200))
-                    .cornerRadius(viewModel.logoCornerRadius)
-            }
+            .padding(16)
         }
+        .ktakeSizeEagerly(alignment: .top)
         .openFile(isPresented: $viewModel.showFileOpener, contentTypes: [.image], onFileOpen: onFileOpened)
-        .padding(16)
-        .ktakeSizeEagerly(alignment: .topLeading)
         .dropDestination(action: handleDropDestination)
     }
 
@@ -105,11 +125,26 @@ extension GeneratorScreen {
         @Published var logoCornerRadius: CGFloat = 0
 
         private let backend = Backend.shared
+        private var logoCornerRadiusSetterSubscription = Set<AnyCancellable>()
+        private var debouncedLogoCornerRadius: CGFloat = 0 {
+            didSet { debouncedLogoCornerRadiusDidSet() }
+        }
+        private var logoConfigurationReference: AppLogoConfiguration?
 
         init() {
             if let latestUpdatedLogoResult = try? backend.logos.getLatestUpdated().get() {
-                Task { await setImageData(latestUpdatedLogoResult.data) }
+                Task {
+                    await setImageData(latestUpdatedLogoResult.data)
+                    await setLogoConfiguration(latestUpdatedLogoResult.configuration)
+                }
             }
+
+            $logoCornerRadius
+                .debounce(for: .seconds(3), scheduler: DispatchQueue.global())
+                .sink(receiveValue: { [weak self] value in
+                    self?.debouncedLogoCornerRadius = value
+                })
+                .store(in: &logoCornerRadiusSetterSubscription)
         }
 
         enum Errors: Error {
@@ -182,7 +217,10 @@ extension GeneratorScreen {
                 assertionFailure("Failed to replace last updated logo")
                 return .failure(.fileCouldNotBeRead(context: failure))
             case .success(let success):
-                Task { await setImageData(success.data) }
+                Task {
+                    await setImageData(success.data)
+                    await setLogoConfiguration(success.configuration)
+                }
             }
 
             return .success(())
@@ -215,6 +253,7 @@ extension GeneratorScreen {
                     return .failure(.fileCouldNotBeRead(context: failure))
                 case .success(let success):
                     await setImageData(success.data)
+                    await setLogoConfiguration(success.configuration)
                 }
 
                 return .success(())
@@ -231,6 +270,38 @@ extension GeneratorScreen {
         @MainActor
         func openFileOpener() {
             showFileOpener = true
+        }
+
+        @MainActor
+        private func setLogoCornerRadius(_ value: CGFloat) {
+            guard logoCornerRadius != value else { return }
+
+            self.logoCornerRadius = value
+        }
+
+        private func setLogoConfiguration(_ configuration: AppLogoConfiguration) async {
+            await setLogoCornerRadius(configuration.cornerRadius)
+            logoConfigurationReference = configuration
+        }
+
+        private func debouncedLogoCornerRadiusDidSet() {
+            guard logoConfigurationReference?.cornerRadius != debouncedLogoCornerRadius else { return }
+
+            let result = backend.logos.updateConfiguration(
+                of: logoConfigurationReference!,
+                with: CoreConfigurationArgs(cornerRadius: debouncedLogoCornerRadius))
+            let updatedConfiguration: AppLogoConfiguration
+            switch result {
+            case .failure(let failure):
+                logger.error(label: "Failed to update logo configuration", error: failure)
+                assertionFailure("Failed to update logo configuration")
+                return
+            case .success(let success):
+                updatedConfiguration = success
+            }
+
+            logoConfigurationReference = updatedConfiguration
+            logger.info("Updated logo configuration")
         }
 
         @MainActor

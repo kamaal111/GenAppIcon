@@ -22,5 +22,7 @@ extension GALocales {
         case FAILED_TO_SAVE_APP_ICON
         case SUCCESSFULL_APP_ICON_GENERATED
         case FILE_FORMAT_NOT_SUPPORTED
+        case DRAG_AND_DROP_HINT
+        case CORNER_RADIUS_STEPPER_LABEL
     }
 }

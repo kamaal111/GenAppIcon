@@ -59,6 +59,29 @@ public struct LogosClient {
         return create(args)
     }
 
+    public func updateConfiguration(of configuration: AppLogoConfiguration, with args: CoreConfigurationArgs) -> Result<AppLogoConfiguration, Errors> {
+        let context = persistenceController.context
+        let predicate = NSPredicate(format: "id = %@", configuration.id.nsString)
+
+        let coreConfiguration: CoreLogoConfiguration?
+        do {
+            coreConfiguration = try CoreLogoConfiguration.find(by: predicate, from: context)
+        } catch {
+            return .failure(.fetchFailure(context: error))
+        }
+        assert(coreConfiguration != nil, "Configuration should not be nil now")
+
+        let updatedConfiguration: CoreLogoConfiguration?
+        do {
+            updatedConfiguration = try coreConfiguration?.update(with: args)
+        } catch {
+            return .failure(.createFailure(context: error))
+        }
+        assert(updatedConfiguration != nil, "Configuration should not be nil now")
+
+        return .success(updatedConfiguration?.toAppLogoConfiguration ?? configuration)
+    }
+
     private func update(logo: AppLogo, with args: CoreLogoArgs) -> Result<AppLogo, Errors> {
         let context = persistenceController.context
         let predicate = NSPredicate(format: "id = %@", logo.id.nsString)
@@ -93,93 +116,5 @@ public struct LogosClient {
         }
 
         return .success(logo.toAppLogo)
-    }
-}
-
-extension CoreLogo {
-    var toAppLogo: AppLogo {
-        AppLogo(id: id, data: data, configuration: configuration.toAppLogoConfiguration)
-    }
-
-    func update(with args: CoreLogoArgs, save: Bool = true) throws -> CoreLogo {
-        let now = Date()
-        self.updateDate = now
-        self.data = args.data
-
-        self.configuration.updateDate = now
-        self.configuration.cornerRadius = args.configuration.cornerRadius
-
-        if save {
-            try self.managedObjectContext?.save()
-        }
-
-        return self
-    }
-
-    static func create(from args: CoreLogoArgs, context: NSManagedObjectContext) throws -> CoreLogo {
-        let now = Date()
-        let logo = CoreLogo(context: context)
-        logo.kCreationDate = now
-        logo.id = UUID()
-        logo.updateDate = now
-        logo.data = args.data
-
-        let configuration = CoreLogoConfiguration(context: context)
-        configuration.kCreationDate = now
-        configuration.id = UUID()
-        configuration.updateDate = now
-        configuration.cornerRadius = args.configuration.cornerRadius
-        configuration.logo = logo
-        logo.configuration = configuration
-
-        try context.save()
-
-        return logo
-    }
-}
-
-extension CoreLogoConfiguration {
-    var toAppLogoConfiguration: AppLogoConfiguration {
-        AppLogoConfiguration(id: id, cornerRadius: cornerRadius)
-    }
-}
-
-public struct CoreLogoArgs {
-    public let data: Data
-    public let configuration: CoreConfigurationArgs
-
-    public init(data: Data, configuration: CoreConfigurationArgs) {
-        self.data = data
-        self.configuration = configuration
-    }
-}
-
-public struct CoreConfigurationArgs {
-    public let cornerRadius: Double
-
-    public init(cornerRadius: Double) {
-        self.cornerRadius = cornerRadius
-    }
-}
-
-public struct AppLogo: Identifiable, Hashable {
-    public let id: UUID
-    public let data: Data
-    public let configuration: AppLogoConfiguration
-
-    public init(id: UUID, data: Data, configuration: AppLogoConfiguration) {
-        self.id = id
-        self.data = data
-        self.configuration = configuration
-    }
-}
-
-public struct AppLogoConfiguration: Identifiable, Hashable {
-    public let id: UUID
-    public let cornerRadius: Double
-
-    public init(id: UUID, cornerRadius: Double) {
-        self.id = id
-        self.cornerRadius = cornerRadius
     }
 }
