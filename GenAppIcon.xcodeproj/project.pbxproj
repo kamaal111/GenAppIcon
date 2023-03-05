@@ -14,11 +14,11 @@
 		2C3C8D6229ABD1E900F30D5F /* SalmonUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2C3C8D6129ABD1E900F30D5F /* SalmonUI */; };
 		2C3C8D6529ABD2EC00F30D5F /* SettingsUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2C3C8D6429ABD2EC00F30D5F /* SettingsUI */; };
 		2C3C8D6729ABD30000F30D5F /* AppSettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C8D6629ABD30000F30D5F /* AppSettingsScreen.swift */; };
+		2C42D9FB29B4CCE90078C1BD /* Backend in Frameworks */ = {isa = PBXBuildFile; productRef = 2C42D9FA29B4CCE90078C1BD /* Backend */; };
 		2CD7839A29AA490500511AA5 /* GenAppIconApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7839929AA490500511AA5 /* GenAppIconApp.swift */; };
 		2CD7839C29AA490500511AA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7839B29AA490500511AA5 /* ContentView.swift */; };
 		2CD7839E29AA490700511AA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CD7839D29AA490700511AA5 /* Assets.xcassets */; };
 		2CD783A129AA490700511AA5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CD783A029AA490700511AA5 /* Preview Assets.xcassets */; };
-		2CD783A329AA490700511AA5 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD783A229AA490700511AA5 /* Persistence.swift */; };
 		2CD783A629AA490700511AA5 /* GenAppIcon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CD783A429AA490700511AA5 /* GenAppIcon.xcdatamodeld */; };
 		2CD783B129AA4A4400511AA5 /* Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD783B029AA4A4400511AA5 /* Screens.swift */; };
 		2CD783B629AA4CAA00511AA5 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD783B529AA4CAA00511AA5 /* Sidebar.swift */; };
@@ -50,12 +50,13 @@
 		2C1B21B629B3C059005EB535 /* AppIconGenerator */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AppIconGenerator; sourceTree = "<group>"; };
 		2C3C8D5E29ABD15E00F30D5F /* GeneratorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorScreen.swift; sourceTree = "<group>"; };
 		2C3C8D6629ABD30000F30D5F /* AppSettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsScreen.swift; sourceTree = "<group>"; };
+		2C42D9F629B4C5AE0078C1BD /* CDPersist */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = CDPersist; sourceTree = "<group>"; };
+		2C42D9F929B4CC9B0078C1BD /* Backend */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Backend; sourceTree = "<group>"; };
 		2CD7839629AA490500511AA5 /* GenAppIcon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GenAppIcon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD7839929AA490500511AA5 /* GenAppIconApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenAppIconApp.swift; sourceTree = "<group>"; };
 		2CD7839B29AA490500511AA5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2CD7839D29AA490700511AA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CD783A029AA490700511AA5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		2CD783A229AA490700511AA5 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		2CD783A529AA490700511AA5 /* GenAppIcon.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenAppIcon.xcdatamodel; sourceTree = "<group>"; };
 		2CD783A729AA490700511AA5 /* GenAppIcon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GenAppIcon.entitlements; sourceTree = "<group>"; };
 		2CD783B029AA4A4400511AA5 /* Screens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screens.swift; sourceTree = "<group>"; };
@@ -75,6 +76,7 @@
 				2CF5A01C29AC0556004A408F /* FileOpener in Frameworks */,
 				2CFA44D129AD485400299EAE /* PopperUp in Frameworks */,
 				2CF5A01929ABF3B5004A408F /* GALocales in Frameworks */,
+				2C42D9FB29B4CCE90078C1BD /* Backend in Frameworks */,
 				2C1B21B829B3CE12005EB535 /* AppIconGenerator in Frameworks */,
 				2CFA44D729AD510300299EAE /* ShrimpExtensions in Frameworks */,
 				2CFA44D429AD4B3900299EAE /* Logster in Frameworks */,
@@ -182,7 +184,6 @@
 				2C1B21AD29B3AF8D005EB535 /* Constants.swift */,
 				2CD7839B29AA490500511AA5 /* ContentView.swift */,
 				2CD7839929AA490500511AA5 /* GenAppIconApp.swift */,
-				2CD783A229AA490700511AA5 /* Persistence.swift */,
 				2CD7839D29AA490700511AA5 /* Assets.xcassets */,
 				2CD783AF29AA4A3000511AA5 /* Enumerations */,
 				2CD783A429AA490700511AA5 /* GenAppIcon.xcdatamodeld */,
@@ -239,6 +240,8 @@
 			isa = PBXGroup;
 			children = (
 				2C1B21B629B3C059005EB535 /* AppIconGenerator */,
+				2C42D9F929B4CC9B0078C1BD /* Backend */,
+				2C42D9F629B4C5AE0078C1BD /* CDPersist */,
 				2CF5A01629ABF296004A408F /* GALocales */,
 			);
 			path = Modules;
@@ -294,6 +297,7 @@
 				2CFA44D329AD4B3900299EAE /* Logster */,
 				2CFA44D629AD510300299EAE /* ShrimpExtensions */,
 				2C1B21B729B3CE12005EB535 /* AppIconGenerator */,
+				2C42D9FA29B4CCE90078C1BD /* Backend */,
 			);
 			productName = GenAppIcon;
 			productReference = 2CD7839629AA490500511AA5 /* GenAppIcon.app */;
@@ -360,7 +364,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CD783A329AA490700511AA5 /* Persistence.swift in Sources */,
 				2C1B21AE29B3AF8D005EB535 /* Constants.swift in Sources */,
 				2C3C8D6729ABD30000F30D5F /* AppSettingsScreen.swift in Sources */,
 				2CD783B829AA4CBE00511AA5 /* MainView.swift in Sources */,
@@ -640,6 +643,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2C3C8D6329ABD2EC00F30D5F /* XCRemoteSwiftPackageReference "SettingsUI" */;
 			productName = SettingsUI;
+		};
+		2C42D9FA29B4CCE90078C1BD /* Backend */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Backend;
 		};
 		2CF5A00A29ABEDDD004A408F /* BetterNavigation */ = {
 			isa = XCSwiftPackageProductDependency;

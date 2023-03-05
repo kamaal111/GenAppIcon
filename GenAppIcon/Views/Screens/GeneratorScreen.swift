@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Logster
+import Backend
 import SalmonUI
 import PopperUp
 import GALocales
@@ -103,11 +104,11 @@ extension GeneratorScreen {
         @Published private(set) var loading = false
         @Published var logoCornerRadius: CGFloat = 0
 
-        private let quickStorage = QuickStorage()
+        private let backend = Backend.shared
 
         init() {
-            if let imageData = quickStorage.lastUploadedLogo {
-                Task { await setImageData(imageData) }
+            if let latestUpdatedLogoResult = try? backend.logos.getLatestUpdated().get() {
+                Task { await setImageData(latestUpdatedLogoResult.data) }
             }
         }
 
@@ -115,7 +116,7 @@ extension GeneratorScreen {
             case generateAppIconFailed(context: Error?)
             case failedToSaveAppIcon
             case fileNotFound
-            case fileCouldNotBeRead
+            case fileCouldNotBeRead(context: Error?)
             case notAllowedToReadFile
             case unsupporedFileFormat
 
@@ -170,7 +171,20 @@ extension GeneratorScreen {
             }
 
             logger.info("Dropped file successfully")
-            Task { await setImageData(supportedImage) }
+
+            let replaceLatestUpdatedResult = backend.logos.replaceLatestUpdated(
+                with: CoreLogoArgs(
+                    data: supportedImage,
+                    configuration: CoreConfigurationArgs(cornerRadius: logoCornerRadius)))
+            switch replaceLatestUpdatedResult {
+            case .failure(let failure):
+                logger.error(label: "Failed to replace last updated logo", error: failure)
+                assertionFailure("Failed to replace last updated logo")
+                return .failure(.fileCouldNotBeRead(context: failure))
+            case .success(let success):
+                Task { await setImageData(success.data) }
+            }
+
             return .success(())
         }
 
@@ -189,7 +203,20 @@ extension GeneratorScreen {
                 guard let content else { return .success(()) }
 
                 logger.info("Opened file successfully")
-                await setImageData(content)
+
+                let replaceLatestUpdatedResult = backend.logos.replaceLatestUpdated(
+                    with: CoreLogoArgs(
+                        data: content,
+                        configuration: CoreConfigurationArgs(cornerRadius: logoCornerRadius)))
+                switch replaceLatestUpdatedResult {
+                case .failure(let failure):
+                    logger.error(label: "Failed to replace last updated logo", error: failure)
+                    assertionFailure("Failed to replace last updated logo")
+                    return .failure(.fileCouldNotBeRead(context: failure))
+                case .success(let success):
+                    await setImageData(success.data)
+                }
+
                 return .success(())
             })
         }
@@ -209,7 +236,6 @@ extension GeneratorScreen {
         @MainActor
         private func setImageData(_ imageData: Data) {
             self.imageData = imageData
-            quickStorage.lastUploadedLogo = imageData
         }
 
         @MainActor
@@ -255,7 +281,7 @@ extension GeneratorScreen {
             case .fileCouldNotBeRead(context: let context):
                 logger.error(label: "Failed to read file", error: context)
                 assertionFailure("Unsupported file")
-                return .fileCouldNotBeRead
+                return .fileCouldNotBeRead(context: context)
             case .notAllowedToReadFile:
                 logger.warning("Secure image loaded")
                 return .notAllowedToReadFile

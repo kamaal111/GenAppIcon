@@ -9,13 +9,10 @@ import SwiftUI
 
 @main
 struct GenAppIconApp: App {
-    let persistenceController = PersistenceController.shared
-
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .frame(minWidth: 300, minHeight: 300)
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

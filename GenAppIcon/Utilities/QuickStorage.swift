@@ -7,17 +7,9 @@
 
 import Foundation
 
-class QuickStorage {
-    var lastUploadedLogo: Data? {
-        get { UserDefaults.lastUploadedLogo }
-        set { UserDefaults.lastUploadedLogo = newValue }
-    }
-}
+class QuickStorage { }
 
 extension UserDefaults {
-    @UserDefaultObject(key: .lastUploadedLogo, container: .appGroup)
-    fileprivate static var lastUploadedLogo: Data?
-
     private static let appGroup: UserDefaults = UserDefaults(suiteName: Constants.Identifiers.appGroup)!
 }
 
@@ -32,7 +24,7 @@ private struct UserDefaultObject<Value: Codable> {
     }
 
     enum Keys: String {
-        case lastUploadedLogo
+        case nada
     }
 
     var wrappedValue: Value? {
