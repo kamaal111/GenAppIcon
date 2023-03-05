@@ -55,13 +55,13 @@ struct GeneratorScreen: View {
                 if let image = viewModel.image {
                     Image(nsImage: image)
                         .size(.squared(200))
-                        .cornerRadius(viewModel.logoCornerRadius)
+                        .cornerRadius(viewModel.previewCornerRadius)
                         .padding(.vertical, 8)
+                    Stepper(
+                        GALocales.getText(.CORNER_RADIUS_STEPPER_LABEL, with: [Int(viewModel.logoCornerRadius).nsNumber]),
+                        value: $viewModel.logoCornerRadius)
+                    .padding(.vertical, 8)
                 }
-                Stepper(
-                    GALocales.getText(.CORNER_RADIUS_STEPPER_LABEL, with: [String(Int(viewModel.logoCornerRadius))]),
-                    value: $viewModel.logoCornerRadius)
-                .padding(.vertical, 8)
             }
             .padding(16)
         }
@@ -191,6 +191,14 @@ extension GeneratorScreen {
             return NSImage(data: imageData)
         }
 
+        var previewCornerRadius: CGFloat {
+            guard let imageSize else { return 0 }
+
+            let shortestEnd = min(imageSize.width, imageSize.height)
+
+            return logoCornerRadius / (shortestEnd / 200)
+        }
+
         var generateAppIconIsDisabled: Bool {
             image == nil || loading
         }
@@ -262,14 +270,55 @@ extension GeneratorScreen {
 
         func generateAppIcons() async -> Result<Void, Errors> {
             await withLoading(function: {
-                await AppIconGenerator.generate(imageData!)
+                guard let data = await logoToExportData() else { return .success(()) }
+
+                return await AppIconGenerator.generate(data)
+                    .mapError(handleAppIconGeneratorError)
             })
-            .mapError(handleAppIconGeneratorError)
         }
 
         @MainActor
         func openFileOpener() {
             showFileOpener = true
+        }
+
+        private var imageSize: CGSize? {
+            image?.size
+        }
+
+        private func logoToExportData() async -> Data? {
+            await withCheckedContinuation({ continuation in
+                logoToExportData { data in
+                    continuation.resume(returning: data)
+                }
+            })
+        }
+
+        private func logoToExportData(completion: @escaping (Data?) -> Void) {
+            guard let image else {
+                completion(.none)
+                return
+            }
+
+            DispatchQueue.main.async { [weak self] in
+                guard let self else {
+                    completion(.none)
+                    return
+                }
+
+                let tiffRepresentation = Image(nsImage: image)
+                    .size(.squared(min(self.imageSize!.width, self.imageSize!.height)))
+                    .cornerRadius(self.logoCornerRadius)
+                    .snapshot()?
+                    .tiffRepresentation
+
+                guard let tiffRepresentation, let bitmapImage = NSBitmapImageRep(data: tiffRepresentation) else {
+                    completion(.none)
+                    return
+                }
+
+                completion(bitmapImage.representation(using: .png, properties: [:]))
+            }
         }
 
         @MainActor
@@ -285,10 +334,11 @@ extension GeneratorScreen {
         }
 
         private func debouncedLogoCornerRadiusDidSet() {
-            guard logoConfigurationReference?.cornerRadius != debouncedLogoCornerRadius else { return }
+            guard let logoConfigurationReference,
+                  logoConfigurationReference.cornerRadius != debouncedLogoCornerRadius else { return }
 
             let result = backend.logos.updateConfiguration(
-                of: logoConfigurationReference!,
+                of: logoConfigurationReference,
                 with: CoreConfigurationArgs(cornerRadius: debouncedLogoCornerRadius))
             let updatedConfiguration: AppLogoConfiguration
             switch result {
@@ -300,13 +350,15 @@ extension GeneratorScreen {
                 updatedConfiguration = success
             }
 
-            logoConfigurationReference = updatedConfiguration
+            self.logoConfigurationReference = updatedConfiguration
             logger.info("Updated logo configuration")
         }
 
         @MainActor
         private func setImageData(_ imageData: Data) {
-            self.imageData = imageData
+            withAnimation {
+                self.imageData = imageData
+            }
         }
 
         @MainActor
