@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-      "localize": "node Scripts/generate-locales/locale.js"
-  },
+  "scripts": {},
   "author": "Kamaal",
   "license": "ISC",
   "devDependencies": {

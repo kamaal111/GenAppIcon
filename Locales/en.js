@@ -18,4 +18,5 @@ module.exports = {
     FILE_FORMAT_NOT_SUPPORTED: "This file format is not suported",
     DRAG_AND_DROP_HINT: "Or drag and drop a image here!",
     CORNER_RADIUS_STEPPER_LABEL: "Corner radius %@",
+    BRIGHTNESS_SLIDER_LABEL: "Brightness %@%%",
 }

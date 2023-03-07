@@ -24,5 +24,6 @@ extension GALocales {
         case FILE_FORMAT_NOT_SUPPORTED
         case DRAG_AND_DROP_HINT
         case CORNER_RADIUS_STEPPER_LABEL
+        case BRIGHTNESS_SLIDER_LABEL
     }
 }

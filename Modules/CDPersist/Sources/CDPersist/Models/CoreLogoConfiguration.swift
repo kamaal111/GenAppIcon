@@ -16,12 +16,17 @@ public class CoreLogoConfiguration: NSManagedObject, ManuallyManagedObject, Iden
     @NSManaged public var kCreationDate: Date
     @NSManaged public var id: UUID
     @NSManaged public var cornerRadius: Double
+    @NSManaged public var brightness: Double
     @NSManaged public var logo: CoreLogo
 
     public static let properties = baseProperties
         .concat([
             ManagedObjectPropertyConfiguration(
                 name: \CoreLogoConfiguration.cornerRadius,
+                type: .double,
+                isOptional: false),
+            ManagedObjectPropertyConfiguration(
+                name: \CoreLogoConfiguration.brightness,
                 type: .double,
                 isOptional: false),
         ])

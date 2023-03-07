@@ -53,14 +53,22 @@ struct GeneratorScreen: View {
                 .disabled(viewModel.generateAppIconIsDisabled)
                 .padding(.vertical, 8)
                 if let image = viewModel.image {
-                    Image(nsImage: image)
-                        .size(.squared(200))
-                        .cornerRadius(viewModel.previewCornerRadius)
+                    viewModel.styledImage(size: 200, image: image)
                         .padding(.vertical, 8)
                     Stepper(
                         GALocales.getText(.CORNER_RADIUS_STEPPER_LABEL, with: [Int(viewModel.logoCornerRadius).nsNumber]),
                         value: $viewModel.logoCornerRadius)
                     .padding(.vertical, 8)
+                    HStack {
+                        Text(GALocales.getText(
+                            .BRIGHTNESS_SLIDER_LABEL,
+                            with: [viewModel.imageBrightnessPercentage]))
+                        .frame(width: 120)
+                        .padding(.top, -4)
+                        Slider(value: $viewModel.logoBrightness, in: -1...1, step: 0.1)
+                    }
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 16)
                 }
             }
             .padding(16)
@@ -123,11 +131,16 @@ extension GeneratorScreen {
         @Published private var imageData: Data?
         @Published private(set) var loading = false
         @Published var logoCornerRadius: CGFloat = 0
+        @Published var logoBrightness: CGFloat = 0
 
         private let backend = Backend.shared
         private var logoCornerRadiusSetterSubscription = Set<AnyCancellable>()
+        private var logoBrightnessSetterSubscription = Set<AnyCancellable>()
         private var debouncedLogoCornerRadius: CGFloat = 0 {
             didSet { debouncedLogoCornerRadiusDidSet() }
+        }
+        private var debounceLogoBrightness: CGFloat = 0 {
+            didSet { debouncedLogoBrightnessDidSet() }
         }
         private var logoConfigurationReference: AppLogoConfiguration?
 
@@ -138,6 +151,13 @@ extension GeneratorScreen {
                     await setLogoConfiguration(latestUpdatedLogoResult.configuration)
                 }
             }
+
+            $logoBrightness
+                .debounce(for: .seconds(3), scheduler: DispatchQueue.global())
+                .sink(receiveValue: { [weak self] value in
+                    self?.debounceLogoBrightness = value
+                })
+                .store(in: &logoBrightnessSetterSubscription)
 
             $logoCornerRadius
                 .debounce(for: .seconds(3), scheduler: DispatchQueue.global())
@@ -185,6 +205,10 @@ extension GeneratorScreen {
             }
         }
 
+        var imageBrightnessPercentage: NSNumber {
+            Int(logoBrightness * 100).nsNumber
+        }
+
         var image: NSImage? {
             guard let imageData else { return nil }
 
@@ -203,6 +227,13 @@ extension GeneratorScreen {
             image == nil || loading
         }
 
+        func styledImage(size: CGFloat, image: NSImage) -> some View {
+            Image(nsImage: image)
+                .size(.squared(size))
+                .brightness(logoBrightness)
+                .cornerRadius(logoCornerRadius)
+        }
+
         func handleDroppedFiles(_ filesContent: [Data]) -> Result<Void, Errors> {
             let supportedImage = filesContent
                 .first(where: {
@@ -218,7 +249,7 @@ extension GeneratorScreen {
             let replaceLatestUpdatedResult = backend.logos.replaceLatestUpdated(
                 with: CoreLogoArgs(
                     data: supportedImage,
-                    configuration: CoreConfigurationArgs(cornerRadius: logoCornerRadius)))
+                    configuration: CoreConfigurationArgs(cornerRadius: logoCornerRadius, brightness: logoBrightness)))
             switch replaceLatestUpdatedResult {
             case .failure(let failure):
                 logger.error(label: "Failed to replace last updated logo", error: failure)
@@ -253,7 +284,9 @@ extension GeneratorScreen {
                 let replaceLatestUpdatedResult = backend.logos.replaceLatestUpdated(
                     with: CoreLogoArgs(
                         data: content,
-                        configuration: CoreConfigurationArgs(cornerRadius: logoCornerRadius)))
+                        configuration: CoreConfigurationArgs(
+                            cornerRadius: logoCornerRadius,
+                            brightness: logoBrightness)))
                 switch replaceLatestUpdatedResult {
                 case .failure(let failure):
                     logger.error(label: "Failed to replace last updated logo", error: failure)
@@ -306,18 +339,12 @@ extension GeneratorScreen {
                     return
                 }
 
-                let tiffRepresentation = Image(nsImage: image)
-                    .size(.squared(min(self.imageSize!.width, self.imageSize!.height)))
-                    .cornerRadius(self.logoCornerRadius)
-                    .snapshot()?
+                let image = self.styledImage(size: min(self.imageSize!.width, self.imageSize!.height), image: image)
+                let data = ImageRenderer(content: image)
+                    .nsImage?
                     .tiffRepresentation
 
-                guard let tiffRepresentation, let bitmapImage = NSBitmapImageRep(data: tiffRepresentation) else {
-                    completion(.none)
-                    return
-                }
-
-                completion(bitmapImage.representation(using: .png, properties: [:]))
+                completion(data)
             }
         }
 
@@ -328,8 +355,16 @@ extension GeneratorScreen {
             self.logoCornerRadius = value
         }
 
+        @MainActor
+        private func setLogoBrightness(_ value: CGFloat) {
+            guard logoBrightness != value else { return }
+
+            self.logoBrightness = value
+        }
+
         private func setLogoConfiguration(_ configuration: AppLogoConfiguration) async {
             await setLogoCornerRadius(configuration.cornerRadius)
+            await setLogoBrightness(configuration.brightness)
             logoConfigurationReference = configuration
         }
 
@@ -339,7 +374,28 @@ extension GeneratorScreen {
 
             let result = backend.logos.updateConfiguration(
                 of: logoConfigurationReference,
-                with: CoreConfigurationArgs(cornerRadius: debouncedLogoCornerRadius))
+                with: CoreConfigurationArgs(cornerRadius: debouncedLogoCornerRadius, brightness: logoBrightness))
+            let updatedConfiguration: AppLogoConfiguration
+            switch result {
+            case .failure(let failure):
+                logger.error(label: "Failed to update logo configuration", error: failure)
+                assertionFailure("Failed to update logo configuration")
+                return
+            case .success(let success):
+                updatedConfiguration = success
+            }
+
+            self.logoConfigurationReference = updatedConfiguration
+            logger.info("Updated logo configuration")
+        }
+
+        private func debouncedLogoBrightnessDidSet() {
+            guard let logoConfigurationReference,
+                  logoConfigurationReference.brightness != debounceLogoBrightness else { return }
+
+            let result = backend.logos.updateConfiguration(
+                of: logoConfigurationReference,
+                with: CoreConfigurationArgs(cornerRadius: logoCornerRadius, brightness: debounceLogoBrightness))
             let updatedConfiguration: AppLogoConfiguration
             switch result {
             case .failure(let failure):

@@ -21,6 +21,7 @@ extension CoreLogo {
 
         self.configuration.updateDate = now
         self.configuration.cornerRadius = args.configuration.cornerRadius
+        self.configuration.brightness = args.configuration.brightness
 
         if save {
             try self.managedObjectContext?.save()
@@ -42,6 +43,7 @@ extension CoreLogo {
         configuration.id = UUID()
         configuration.updateDate = now
         configuration.cornerRadius = args.configuration.cornerRadius
+        configuration.brightness = args.configuration.brightness
         configuration.logo = logo
         logo.configuration = configuration
 
