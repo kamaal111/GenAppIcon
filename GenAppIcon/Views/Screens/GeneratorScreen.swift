@@ -303,9 +303,11 @@ extension GeneratorScreen {
 
         func generateAppIcons() async -> Result<Void, Errors> {
             await withLoading(function: {
-                guard let data = await logoToExportData() else { return .success(()) }
+                guard let image, let imageSize else { return .success(()) }
 
-                return await AppIconGenerator.generate(data)
+                let imageView = styledImage(size: min(imageSize.width, imageSize.height), image: image)
+
+                return await AppIconGenerator.generate(from: imageView)
                     .mapError(handleAppIconGeneratorError)
             })
         }
@@ -317,35 +319,6 @@ extension GeneratorScreen {
 
         private var imageSize: CGSize? {
             image?.size
-        }
-
-        private func logoToExportData() async -> Data? {
-            await withCheckedContinuation({ continuation in
-                logoToExportData { data in
-                    continuation.resume(returning: data)
-                }
-            })
-        }
-
-        private func logoToExportData(completion: @escaping (Data?) -> Void) {
-            guard let image else {
-                completion(.none)
-                return
-            }
-
-            DispatchQueue.main.async { [weak self] in
-                guard let self else {
-                    completion(.none)
-                    return
-                }
-
-                let image = self.styledImage(size: min(self.imageSize!.width, self.imageSize!.height), image: image)
-                let data = ImageRenderer(content: image)
-                    .nsImage?
-                    .tiffRepresentation
-
-                completion(data)
-            }
         }
 
         @MainActor

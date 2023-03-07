@@ -5,7 +5,7 @@
 //  Created by Kamaal M Farah on 04/03/2023.
 //
 
-import Cocoa
+import SwiftUI
 import ShrimpExtensions
 
 public struct AppIconGenerator {
@@ -17,7 +17,17 @@ public struct AppIconGenerator {
         case failedToSaveAppIcon
     }
 
-    public static func generate(_ appIconData: Data) async -> Result<Void, Errors> {
+    public static func generate(from view: some View) async -> Result<Void, Errors> {
+        let data = await ImageRenderer(content: view)
+            .nsImage?
+            .tiffRepresentation
+
+        guard let data else { return .failure(.conversionFailure) }
+
+        return await generate(data)
+    }
+
+    private static func generate(_ appIconData: Data) async -> Result<Void, Errors> {
         guard let pngRepresentation = NSBitmapImageRep(data: appIconData)?.representation(using: .png, properties: [:])
         else { return .failure(.conversionFailure) }
 
