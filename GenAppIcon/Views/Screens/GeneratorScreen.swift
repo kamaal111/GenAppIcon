@@ -45,9 +45,16 @@ struct GeneratorScreen: View {
                 if let image = viewModel.image {
                     viewModel.styledImage(size: 200, image: image)
                         .padding(.vertical, 8)
-                    Stepper(
-                        GALocales.getText(.CORNER_RADIUS_STEPPER_LABEL, with: [Int(viewModel.logoCornerRadius).nsNumber]),
-                        value: $viewModel.logoCornerRadius)
+                    HStack {
+                        Stepper(
+                            GALocales.getText(
+                                .CORNER_RADIUS_STEPPER_LABEL,
+                                with: [Int(viewModel.logoCornerRadius).nsNumber]),
+                            value: $viewModel.logoCornerRadius)
+                        .disabled(!viewModel.logoCornerRadiusIsEnabled)
+                        Toggle("", isOn: $viewModel.logoCornerRadiusIsEnabled)
+                            .labelsHidden()
+                    }
                     .padding(.vertical, 8)
                     HStack {
                         Text(GALocales.getText(
@@ -125,6 +132,7 @@ extension GeneratorScreen {
         @Published private(set) var loading = false
         @Published var logoCornerRadius: CGFloat = 0
         @Published var logoBrightness: CGFloat = 0
+        @Published var logoCornerRadiusIsEnabled = true
 
         private let backend = Backend.shared
         private var logoCornerRadiusSetterSubscription = Set<AnyCancellable>()
@@ -224,7 +232,7 @@ extension GeneratorScreen {
             Image(nsImage: image)
                 .size(.squared(size))
                 .brightness(logoBrightness)
-                .cornerRadius(logoCornerRadius)
+                .cornerRadius(logoCornerRadiusIsEnabled ? logoCornerRadius : 0)
         }
 
         func handleDroppedFiles(_ filesContent: [Data]) -> Result<Void, Errors> {

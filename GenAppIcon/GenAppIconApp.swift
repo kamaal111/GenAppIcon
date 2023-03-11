@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+import BetterNavigation
 
+/// &#128511; Dare you to check!
 @main
 struct GenAppIconApp: App {
     @StateObject private var userData = UserData()
