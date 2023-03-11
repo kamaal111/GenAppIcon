@@ -30,25 +30,15 @@ struct GeneratorScreen: View {
                     VStack {
                         Text(GALocales.getText(.UPLOAD_IMAGE))
                             .bold()
-                            .foregroundColor(.accentColor)
                         Text(GALocales.getText(.DRAG_AND_DROP_HINT))
                             .font(.footnote)
                             .foregroundColor(.secondary)
                     }
-                    .padding(.vertical, 4)
-                    .ktakeWidthEagerly()
-                    .background(Color(nsColor: .separatorColor))
-                    .cornerRadius(4)
                 }
                 .disabled(viewModel.loading)
                 WideButton(action: onGenerateAppIconsClick) {
                     Text(GALocales.getText(.GENERATE_APP_ICONS))
                         .bold()
-                        .foregroundColor(.accentColor)
-                        .padding(.vertical, 8)
-                        .ktakeWidthEagerly()
-                        .background(Color(nsColor: .separatorColor))
-                        .cornerRadius(4)
                 }
                 .disabled(viewModel.generateAppIconIsDisabled)
                 .padding(.vertical, 8)

@@ -9,10 +9,13 @@ import SwiftUI
 
 @main
 struct GenAppIconApp: App {
+    @StateObject private var userData = UserData()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .frame(minWidth: 300, minHeight: 300)
+                .environmentObject(userData)
         }
     }
 }

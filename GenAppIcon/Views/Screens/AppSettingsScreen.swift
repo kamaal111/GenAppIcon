@@ -9,8 +9,10 @@ import SwiftUI
 import SettingsUI
 
 struct AppSettingsScreen: View {
+    @EnvironmentObject private var userData: UserData
+
     var body: some View {
-        SettingsScreen(configuration: SettingsConfiguration())
+        SettingsScreen(configuration: userData.settingsConfiguration)
     }
 }
 

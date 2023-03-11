@@ -21,9 +21,10 @@ struct WideButton<Content: View>: View {
         Button(action: action) {
             content
                 .foregroundColor(.accentColor)
-                // Hack: need the following 2 lines to be fully clickable on macOS
+                .padding(.vertical, 8)
                 .ktakeWidthEagerly()
-                .background(Color(nsColor: .separatorColor).opacity(0.01))
+                .background(Color(nsColor: .separatorColor))
+                .cornerRadius(4)
         }
         .buttonStyle(.plain)
     }
