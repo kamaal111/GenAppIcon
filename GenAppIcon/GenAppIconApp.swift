@@ -19,5 +19,20 @@ struct GenAppIconApp: App {
                 .frame(minWidth: 300, minHeight: 300)
                 .environmentObject(userData)
         }
+        #if DEBUG
+        .commands(content: {
+            CommandGroup(replacing: .help) {
+                Button(action: { Navigator<Screens>.notify(.navigate(destination: .playground)) }) {
+                    Text("Playground")
+                }
+                .keyboardShortcut("D", modifiers: [.command, .shift])
+            }
+        })
+        #endif
+        Settings {
+            AppSettingsScreen()
+                .frame(minWidth: 200, minHeight: 220)
+                .environmentObject(userData)
+        }
     }
 }

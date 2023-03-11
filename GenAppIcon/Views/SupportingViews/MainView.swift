@@ -26,6 +26,12 @@ struct MainView: View {
                 GeneratorScreen()
             case .settings:
                 AppSettingsScreen()
+            #if DEBUG
+            case .playground:
+                PlaygroundScreen()
+            case .appLogoCreator:
+                PlaygroundAppLogoCreatorScreen()
+            #endif
             }
         }
         .navigationTitle(screen.title)

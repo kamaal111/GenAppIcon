@@ -45,27 +45,30 @@ struct GeneratorScreen: View {
                 if let image = viewModel.image {
                     viewModel.styledImage(size: 200, image: image)
                         .padding(.vertical, 8)
-                    HStack {
-                        Stepper(
-                            GALocales.getText(
-                                .CORNER_RADIUS_STEPPER_LABEL,
-                                with: [Int(viewModel.logoCornerRadius).nsNumber]),
-                            value: $viewModel.logoCornerRadius)
-                        .disabled(!viewModel.logoCornerRadiusIsEnabled)
-                        Toggle("", isOn: $viewModel.logoCornerRadiusIsEnabled)
-                            .labelsHidden()
+                    KJustStack {
+                        HStack {
+                            Stepper(
+                                GALocales.getText(
+                                    .CORNER_RADIUS_STEPPER_LABEL,
+                                    with: [Int(viewModel.logoCornerRadius).nsNumber]),
+                                value: $viewModel.logoCornerRadius)
+                            .disabled(!viewModel.logoCornerRadiusIsEnabled)
+                            Toggle("", isOn: $viewModel.logoCornerRadiusIsEnabled)
+                                .labelsHidden()
+                        }
+                        .padding(.vertical, 8)
+                        HStack {
+                            Text(GALocales.getText(
+                                .BRIGHTNESS_SLIDER_LABEL,
+                                with: [viewModel.imageBrightnessPercentage]))
+                            .frame(width: 120)
+                            .padding(.top, -4)
+                            Slider(value: $viewModel.logoBrightness, in: -1...1, step: 0.1)
+                        }
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 16)
                     }
-                    .padding(.vertical, 8)
-                    HStack {
-                        Text(GALocales.getText(
-                            .BRIGHTNESS_SLIDER_LABEL,
-                            with: [viewModel.imageBrightnessPercentage]))
-                        .frame(width: 120)
-                        .padding(.top, -4)
-                        Slider(value: $viewModel.logoBrightness, in: -1...1, step: 0.1)
-                    }
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 16)
+                    .disabled(viewModel.controlsAreDisabled)
                 }
             }
             .padding(16)
@@ -226,6 +229,10 @@ extension GeneratorScreen {
 
         var generateAppIconIsDisabled: Bool {
             image == nil || loading
+        }
+
+        var controlsAreDisabled: Bool {
+            loading
         }
 
         func styledImage(size: CGFloat, image: NSImage) -> some View {

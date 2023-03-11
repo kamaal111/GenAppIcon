@@ -19,6 +19,9 @@
 		2CC599B629BC8193009907A2 /* JSONUnpacker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC599B529BC8193009907A2 /* JSONUnpacker.swift */; };
 		2CC599B929BC8295009907A2 /* Secrets.json in Resources */ = {isa = PBXBuildFile; fileRef = 2CC599B829BC8295009907A2 /* Secrets.json */; };
 		2CC599BD29BC8365009907A2 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC599BC29BC8365009907A2 /* UserData.swift */; };
+		2CC599C229BC9CA3009907A2 /* PlaygroundScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC599C129BC9CA3009907A2 /* PlaygroundScreen.swift */; };
+		2CC599C429BC9DF3009907A2 /* PlaygroundAppLogoCreatorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC599C329BC9DF3009907A2 /* PlaygroundAppLogoCreatorScreen.swift */; };
+		2CC599C629BC9E69009907A2 /* PlaygroundNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC599C529BC9E69009907A2 /* PlaygroundNavigationLink.swift */; };
 		2CD7839A29AA490500511AA5 /* GenAppIconApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7839929AA490500511AA5 /* GenAppIconApp.swift */; };
 		2CD7839C29AA490500511AA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7839B29AA490500511AA5 /* ContentView.swift */; };
 		2CD7839E29AA490700511AA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CD7839D29AA490700511AA5 /* Assets.xcassets */; };
@@ -32,6 +35,7 @@
 		2CFA44D129AD485400299EAE /* PopperUp in Frameworks */ = {isa = PBXBuildFile; productRef = 2CFA44D029AD485400299EAE /* PopperUp */; };
 		2CFA44D429AD4B3900299EAE /* Logster in Frameworks */ = {isa = PBXBuildFile; productRef = 2CFA44D329AD4B3900299EAE /* Logster */; };
 		2CFA44D729AD510300299EAE /* ShrimpExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 2CFA44D629AD510300299EAE /* ShrimpExtensions */; };
+		2CFD421129BCAFE4006D2FE2 /* AppLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFD421029BCAFE4006D2FE2 /* AppLogo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +62,9 @@
 		2CC599B529BC8193009907A2 /* JSONUnpacker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONUnpacker.swift; sourceTree = "<group>"; };
 		2CC599B829BC8295009907A2 /* Secrets.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Secrets.json; sourceTree = "<group>"; };
 		2CC599BC29BC8365009907A2 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		2CC599C129BC9CA3009907A2 /* PlaygroundScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundScreen.swift; sourceTree = "<group>"; };
+		2CC599C329BC9DF3009907A2 /* PlaygroundAppLogoCreatorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundAppLogoCreatorScreen.swift; sourceTree = "<group>"; };
+		2CC599C529BC9E69009907A2 /* PlaygroundNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundNavigationLink.swift; sourceTree = "<group>"; };
 		2CD7839629AA490500511AA5 /* GenAppIcon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GenAppIcon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD7839929AA490500511AA5 /* GenAppIconApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenAppIconApp.swift; sourceTree = "<group>"; };
 		2CD7839B29AA490500511AA5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +78,7 @@
 		2CF5A00E29ABEFD4004A408F /* en.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = en.js; sourceTree = "<group>"; };
 		2CF5A01429ABF163004A408F /* locale.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = locale.js; sourceTree = "<group>"; };
 		2CF5A01629ABF296004A408F /* GALocales */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GALocales; sourceTree = "<group>"; };
+		2CFD421029BCAFE4006D2FE2 /* AppLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +195,16 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		2CC599C029BC9C86009907A2 /* Playground */ = {
+			isa = PBXGroup;
+			children = (
+				2CC599C329BC9DF3009907A2 /* PlaygroundAppLogoCreatorScreen.swift */,
+				2CC599C529BC9E69009907A2 /* PlaygroundNavigationLink.swift */,
+				2CC599C129BC9CA3009907A2 /* PlaygroundScreen.swift */,
+			);
+			path = Playground;
+			sourceTree = "<group>";
+		};
 		2CD7838D29AA490500511AA5 = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +236,7 @@
 				2CD7839929AA490500511AA5 /* GenAppIconApp.swift */,
 				2CD783AF29AA4A3000511AA5 /* Enumerations */,
 				2CC599BA29BC8344009907A2 /* Models */,
+				2CC599C029BC9C86009907A2 /* Playground */,
 				2CD7839F29AA490700511AA5 /* Preview Content */,
 				2CC599B729BC8221009907A2 /* Resources */,
 				2C1B21AA29B3AC51005EB535 /* Utilities */,
@@ -254,6 +273,7 @@
 		2CD783B429AA4C4400511AA5 /* SupportingViews */ = {
 			isa = PBXGroup;
 			children = (
+				2CFD421029BCAFE4006D2FE2 /* AppLogo.swift */,
 				2CD783B729AA4CBE00511AA5 /* MainView.swift */,
 				2CD783B529AA4CAA00511AA5 /* Sidebar.swift */,
 				2C48239629B51DF60031161B /* WideButton.swift */,
@@ -396,6 +416,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CC599C429BC9DF3009907A2 /* PlaygroundAppLogoCreatorScreen.swift in Sources */,
 				2C1B21AE29B3AF8D005EB535 /* Constants.swift in Sources */,
 				2C3C8D6729ABD30000F30D5F /* AppSettingsScreen.swift in Sources */,
 				2CD783B829AA4CBE00511AA5 /* MainView.swift in Sources */,
@@ -405,8 +426,11 @@
 				2CC599BD29BC8365009907A2 /* UserData.swift in Sources */,
 				2C3C8D5F29ABD15E00F30D5F /* GeneratorScreen.swift in Sources */,
 				2C48239729B51DF60031161B /* WideButton.swift in Sources */,
+				2CFD421129BCAFE4006D2FE2 /* AppLogo.swift in Sources */,
+				2CC599C229BC9CA3009907A2 /* PlaygroundScreen.swift in Sources */,
 				2CC599B629BC8193009907A2 /* JSONUnpacker.swift in Sources */,
 				2CD7839A29AA490500511AA5 /* GenAppIconApp.swift in Sources */,
+				2CC599C629BC9E69009907A2 /* PlaygroundNavigationLink.swift in Sources */,
 				2CD783B629AA4CAA00511AA5 /* Sidebar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

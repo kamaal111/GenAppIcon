@@ -33,6 +33,8 @@ struct SavePanel {
                 switch result {
                 case .cancel, .cancel, .continue, .stop:
                     status = .cancel
+                case .OK:
+                    status = .ok
                 default:
                     status = .unknown(response: result)
                 }
