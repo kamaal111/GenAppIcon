@@ -106,13 +106,16 @@ struct GeneratorScreen: View {
     private func onGenerateAppIconsClick() {
         Task {
             let result = await viewModel.generateAppIcons()
+            let status: SavePanelStatus
             switch result {
             case .failure(let failure):
                 popperUpManager.showPopup(style: failure.popupStyle, timeout: 3)
                 return
-            case .success:
-                break
+            case .success(let success):
+                status = success
             }
+
+            guard status == .ok else { return }
 
             logger.info("Successfully generated app icons")
             popperUpManager.showPopup(
@@ -301,9 +304,12 @@ extension GeneratorScreen {
             })
         }
 
-        func generateAppIcons() async -> Result<Void, Errors> {
+        func generateAppIcons() async -> Result<SavePanelStatus, Errors> {
             await withLoading(function: {
-                guard let image, let imageSize else { return .success(()) }
+                guard let image, let imageSize else {
+                    assertionFailure("These values should have been filled")
+                    return .success(.cancel)
+                }
 
                 let imageView = styledImage(size: min(imageSize.width, imageSize.height), image: image)
 

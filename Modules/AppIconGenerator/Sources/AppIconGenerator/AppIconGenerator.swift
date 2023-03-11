@@ -17,7 +17,7 @@ public struct AppIconGenerator {
         case failedToSaveAppIcon
     }
 
-    public static func generate(from view: some View) async -> Result<Void, Errors> {
+    public static func generate(from view: some View) async -> Result<SavePanelStatus, Errors> {
         let data = await ImageRenderer(content: view)
             .nsImage?
             .tiffRepresentation
@@ -27,7 +27,7 @@ public struct AppIconGenerator {
         return await generate(data)
     }
 
-    private static func generate(_ appIconData: Data) async -> Result<Void, Errors> {
+    private static func generate(_ appIconData: Data) async -> Result<SavePanelStatus, Errors> {
         guard let pngRepresentation = NSBitmapImageRep(data: appIconData)?.representation(using: .png, properties: [:])
         else { return .failure(.conversionFailure) }
 
@@ -54,7 +54,7 @@ public struct AppIconGenerator {
         defer { try? fileManager.removeItem(at: iconSetURL) }
 
         let (savePanelResult, panel) = await SavePanel.savePanel(filename: iconSetName)
-        guard savePanelResult == .OK else { return .success(()) }
+        guard savePanelResult == .ok else { return .success(savePanelResult) }
 
         guard let saveURL = await panel.url else { return .failure(.failedToSaveAppIcon) }
 
@@ -68,6 +68,6 @@ public struct AppIconGenerator {
             return .failure(.failedToSaveAppIcon)
         }
 
-        return .success(())
+        return .success(savePanelResult)
     }
 }

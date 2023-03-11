@@ -10,7 +10,7 @@ import Cocoa
 struct SavePanel {
     private init() { }
 
-    static func savePanel(filename: String) async -> (NSApplication.ModalResponse, NSSavePanel) {
+    static func savePanel(filename: String) async -> (SavePanelStatus, NSSavePanel) {
         await withCheckedContinuation { continuation in
             save(filename: filename) { result, panel in
                 continuation.resume(returning: (result, panel))
@@ -20,7 +20,7 @@ struct SavePanel {
 
     private static func save(
         filename: String,
-        beginHandler: @escaping (_ result: NSApplication.ModalResponse, _ panel: NSSavePanel) -> Void
+        beginHandler: @escaping (_ status: SavePanelStatus, _ panel: NSSavePanel) -> Void
     ) {
         DispatchQueue.main.async {
             let panel = NSSavePanel()
@@ -29,7 +29,14 @@ struct SavePanel {
             panel.nameFieldStringValue = filename
             panel.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.modalPanelWindow)))
             panel.begin(completionHandler: { result in
-                beginHandler(result, panel)
+                let status: SavePanelStatus
+                switch result {
+                case .cancel, .cancel, .continue, .stop:
+                    status = .cancel
+                default:
+                    status = .unknown(response: result)
+                }
+                beginHandler(status, panel)
             })
         }
     }
