@@ -25,5 +25,6 @@ extension GALocales {
         case DRAG_AND_DROP_HINT
         case CORNER_RADIUS_STEPPER_LABEL
         case BRIGHTNESS_SLIDER_LABEL
+        case DEFAULT_COLOR
     }
 }
