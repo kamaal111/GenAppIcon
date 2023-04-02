@@ -43,7 +43,7 @@ struct GeneratorScreen: View {
                 .disabled(viewModel.generateAppIconIsDisabled)
                 .padding(.vertical, 8)
                 if let image = viewModel.image {
-                    viewModel.styledImage(size: 200, image: image)
+                    viewModel.styledImage(size: 200, image: Image(nsImage: image))
                         .padding(.vertical, 8)
                     KJustStack {
                         HStack {
@@ -235,8 +235,8 @@ extension GeneratorScreen {
             loading
         }
 
-        func styledImage(size: CGFloat, image: NSImage) -> some View {
-            Image(nsImage: image)
+        func styledImage(size: CGFloat, image: Image) -> some View {
+            image
                 .size(.squared(size))
                 .brightness(logoBrightness)
                 .cornerRadius(logoCornerRadiusIsEnabled ? logoCornerRadius : 0)
@@ -316,7 +316,7 @@ extension GeneratorScreen {
                     return .success(.cancel)
                 }
 
-                let imageView = styledImage(size: min(imageSize.width, imageSize.height), image: image)
+                let imageView = styledImage(size: min(imageSize.width, imageSize.height), image: Image(nsImage: image))
 
                 return await AppIconGenerator.generate(from: imageView)
                     .mapError(handleAppIconGeneratorError)
